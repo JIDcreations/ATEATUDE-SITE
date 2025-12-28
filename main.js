@@ -68,4 +68,11 @@ document.addEventListener("DOMContentLoaded", () => {
       if (window.innerWidth > 980) setPanel(false);
     });
   }
+
+  // Video autoplay fallback (animations + demo if you reuse class)
+  document.querySelectorAll(".tileVideo, .demoVideo").forEach((v) => {
+    const tryPlay = () => v.play().catch(() => {});
+    v.addEventListener("loadeddata", tryPlay, { once: true });
+    tryPlay();
+  });
 });

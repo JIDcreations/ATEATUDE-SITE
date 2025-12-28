@@ -13,7 +13,9 @@
   --shadow: 0 24px 70px rgba(0,0,0,0.22);
   --shadow2: 0 16px 44px rgba(0,0,0,0.16);
 
-  --container: 1120px;
+  /* ✅ BIGGER overall width so the 4 screens can actually grow */
+  --container: 1400px;
+
   --slide-min: 92vh;
 
   --pad: clamp(20px, 4vw, 64px);
@@ -525,7 +527,10 @@ button:focus-visible{
 /* LAYOUT */
 .slideGrid{
   display:grid;
-  grid-template-columns: 1.05fr .95fr;
+
+  /* ✅ more space for the media column across the site */
+  grid-template-columns: .85fr 1.15fr;
+
   gap: clamp(22px, 3vw, 44px);
   align-items:start;
   width:100%;
@@ -756,70 +761,74 @@ button:focus-visible{
   background: rgba(0,0,0,0.25);
 }
 
-
 /* =========================
-   ANIMATIONS (FIX SIZE + 2x2)
+   ANIMATIONS — BIGGER 4 SCREENS
    ========================= */
 
 .grid2{
   display:grid;
-  grid-template-columns: repeat(2, minmax(0,1fr));
-  gap:16px;
+  grid-template-columns: repeat(4, minmax(0,1fr));
+  gap:24px;
   width:100%;
+
+  /* ✅ MUST be able to expand inside the wider media column */
+  max-width: 100%;
+
+  margin-top:22px;
   align-items:start;
 }
 
+/* large device cards */
 .tile{
-  border-radius: var(--r-lg);
+  border-radius:22px;
   background: rgba(36,50,53,0.14);
   border:1px solid rgba(253,251,252,0.18);
   overflow:hidden;
-  box-shadow: var(--shadow2);
-
+  box-shadow: 0 28px 80px rgba(0,0,0,0.28);
   display:flex;
   flex-direction:column;
+}
 
-  min-height: unset;
-  transition: transform 220ms var(--ease), box-shadow 220ms var(--ease), border-color 220ms var(--ease);
-}
-.tile:hover{
-  transform: translateY(-2px);
-  box-shadow: 0 22px 60px rgba(0,0,0,0.20);
-  border-color: rgba(253,251,252,0.22);
-}
+/* IMPORTANT:
+   Your real videos/images are NOT inside .tile__ph in most cases.
+   Their size is driven by width + aspect-ratio on the media itself.
+   So the only way to make them bigger is: give the media column more width
+   (done via --container + slideGrid columns) and let the tiles fill it. */
 
 .tile__ph{
   aspect-ratio: 9 / 16;
-  height:auto;
+  height: clamp(420px, 48vh, 620px);
+  padding:16px;
 
   display:grid;
   place-items:center;
   font-weight:600;
-  opacity:.88;
-
-  padding:16px;
+  opacity:.95;
 
   background:
-    radial-gradient(700px 260px at 20% 0%, rgba(214,244,205,0.10), transparent 62%),
-    radial-gradient(700px 260px at 90% 60%, rgba(74,138,119,0.10), transparent 60%),
+    radial-gradient(820px 360px at 20% 0%, rgba(214,244,205,0.10), transparent 62%),
+    radial-gradient(820px 360px at 90% 60%, rgba(74,138,119,0.12), transparent 60%),
     rgba(253,251,252,0.08);
 }
 
-/* for real assets */
-.tile .tileImg,
-.tile video{
+/* FULL content visible */
+.tile video,
+.tile .tileImg{
   width:100%;
-  height:100%;
-  display:block;
-  object-fit: cover;
+
+  /* ✅ this is what sets the visual size */
   aspect-ratio: 9 / 16;
+
+  height:auto;
+  display:block;
+  object-fit: contain;
+  background: rgba(0,0,0,0.28);
 }
 
 .tile__cap{
-  margin:0;
   padding:12px 14px;
   font-size:12px;
-  opacity:.80;
+  opacity:.65;
   font-weight:300;
 }
 
@@ -1042,7 +1051,9 @@ button:focus-visible{
 
   .infoGrid{ grid-template-columns: 1fr; }
 
-  .grid2{ grid-template-columns: 1fr; }
+  /* ✅ keep animations readable on tablet: 2 columns (NOT 1) */
+  .grid2{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+
   .techGrid{ grid-template-columns: 1fr; }
   .reflectGrid{ grid-template-columns: 1fr; }
 
@@ -1055,4 +1066,7 @@ button:focus-visible{
 
 @media (max-width: 520px){
   .btn--lg{ width:100%; }
+
+  /* optional: 1 column on very small phones */
+  .grid2{ grid-template-columns: 1fr; }
 }
