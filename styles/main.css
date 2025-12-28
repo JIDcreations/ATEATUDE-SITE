@@ -18,9 +18,13 @@
 
   --pad: clamp(20px, 4vw, 64px);
 
-  /* new rhythm helpers */
+  /* rhythm helpers */
   --stack-gap: clamp(12px, 2.2vw, 18px);
   --copy-gap: 12px;
+
+  /* subtle motion */
+  --ease: cubic-bezier(.2,.8,.2,1);
+  --dur: 650ms;
 }
 
 *{ box-sizing:border-box; }
@@ -43,11 +47,46 @@ button:focus-visible{
   border-radius: 12px;
 }
 
+/* consistent gutters everywhere */
 .container{
   width:100%;
   max-width: var(--container);
   margin-inline:auto;
   padding-inline: var(--pad);
+}
+
+/* =========================
+   SUBTLE GLOBAL ANIMATIONS
+   ========================= */
+
+/* reveal on load */
+@keyframes fadeUp{
+  from{ opacity:0; transform: translateY(10px); }
+  to{ opacity:1; transform: translateY(0); }
+}
+
+/* subtle floating highlight */
+@keyframes floatSlow{
+  0%{ transform: translateY(0); }
+  50%{ transform: translateY(-6px); }
+  100%{ transform: translateY(0); }
+}
+
+/* apply a gentle entrance to common blocks */
+.hero,
+.slideHead,
+.slideCopy,
+.slideMedia{
+  animation: fadeUp var(--dur) var(--ease) both;
+}
+
+/* stagger a bit so it feels premium (no JS needed) */
+.slideCopy{ animation-delay: 80ms; }
+.slideMedia{ animation-delay: 140ms; }
+
+/* reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce){
+  *{ animation: none !important; transition: none !important; scroll-behavior:auto !important; }
 }
 
 /* NAV */
@@ -80,6 +119,11 @@ button:focus-visible{
   height:30px;
   object-fit:contain;
   filter: drop-shadow(0 10px 18px rgba(0,0,0,0.22));
+  transition: transform 240ms var(--ease), filter 240ms var(--ease);
+}
+.brand:hover .brand__logo{
+  transform: translateY(-1px);
+  filter: drop-shadow(0 14px 24px rgba(0,0,0,0.26));
 }
 
 .brand__name{
@@ -116,7 +160,7 @@ button:focus-visible{
   font-weight:600;
   opacity:.92;
   cursor:pointer;
-  transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
+  transition: background-color 160ms var(--ease), border-color 160ms var(--ease), transform 160ms var(--ease);
 }
 .dd__btn:hover{
   background: rgba(253,251,252,0.09);
@@ -131,6 +175,7 @@ button:focus-visible{
   transform: rotate(45deg);
   margin-top:-2px;
   opacity:.9;
+  transition: transform 180ms var(--ease), margin-top 180ms var(--ease);
 }
 
 .dd__menu{
@@ -143,7 +188,12 @@ button:focus-visible{
   background: rgba(36,50,53,0.96);
   border:1px solid rgba(253,251,252,0.12);
   box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+
+  /* animated open */
   display:none;
+  opacity:0;
+  transform: translateY(-6px);
+  transition: opacity 180ms var(--ease), transform 180ms var(--ease);
   z-index:60;
 }
 
@@ -154,13 +204,18 @@ button:focus-visible{
   font-size:12px;
   font-weight:500;
   opacity:.88;
+  transition: background-color 160ms var(--ease), opacity 160ms var(--ease);
 }
 .dd__menu a:hover{
   background: rgba(253,251,252,0.08);
   opacity:1;
 }
 
-.dd.is-open .dd__menu{ display:block; }
+.dd.is-open .dd__menu{
+  display:block;
+  opacity:1;
+  transform: translateY(0);
+}
 .dd.is-open .dd__btn{ background: rgba(253,251,252,0.09); }
 .dd.is-open .dd__chev{ transform: rotate(225deg); margin-top:2px; }
 
@@ -173,7 +228,14 @@ button:focus-visible{
   background: rgba(253,251,252,0.06);
   cursor:pointer;
   padding:10px;
+  transition: background-color 160ms var(--ease), border-color 160ms var(--ease), transform 160ms var(--ease);
 }
+.nav__burger:hover{
+  background: rgba(253,251,252,0.09);
+  border-color: rgba(253,251,252,0.16);
+}
+.nav__burger:active{ transform: translateY(1px); }
+
 .nav__burger span{
   display:block;
   height:2px;
@@ -192,8 +254,17 @@ button:focus-visible{
   padding: 18px var(--pad);
   z-index:55;
   overflow:auto;
+
+  /* subtle appear */
+  opacity:0;
+  transform: translateY(-8px);
+  transition: opacity 220ms var(--ease), transform 220ms var(--ease);
 }
-.navPanel.is-open{ display:block; }
+.navPanel.is-open{
+  display:block;
+  opacity:1;
+  transform: translateY(0);
+}
 
 .navPanel__group{
   border-radius:16px;
@@ -202,6 +273,7 @@ button:focus-visible{
   padding:12px;
   margin-bottom:12px;
 }
+
 .navPanel__title{
   font-size:12px;
   font-weight:700;
@@ -210,6 +282,7 @@ button:focus-visible{
   opacity:.78;
   margin: 2px 0 10px;
 }
+
 .navPanel a{
   display:block;
   padding:12px 12px;
@@ -217,8 +290,13 @@ button:focus-visible{
   font-size:14px;
   font-weight:500;
   opacity:.9;
+  transition: background-color 160ms var(--ease), opacity 160ms var(--ease), transform 160ms var(--ease);
 }
-.navPanel a:hover{ background: rgba(253,251,252,0.08); opacity:1; }
+.navPanel a:hover{
+  background: rgba(253,251,252,0.08);
+  opacity:1;
+  transform: translateX(1px);
+}
 
 /* BUTTONS */
 .btn{
@@ -229,7 +307,7 @@ button:focus-visible{
   border-radius:10px;
   border:1px solid transparent;
   font-weight:600;
-  transition: transform 160ms ease, background-color 160ms ease, border-color 160ms ease, filter 160ms ease, box-shadow 160ms ease;
+  transition: transform 160ms var(--ease), background-color 160ms var(--ease), border-color 160ms var(--ease), filter 160ms var(--ease), box-shadow 160ms var(--ease);
   white-space: nowrap;
 }
 .btn:active{ transform: translateY(1px); }
@@ -266,6 +344,22 @@ button:focus-visible{
   overflow:hidden;
 }
 
+/* subtle ambient blob motion in backgrounds (very soft) */
+.slide::before{
+  content:"";
+  position:absolute;
+  inset:-80px;
+  background:
+    radial-gradient(900px 520px at 18% 10%, rgba(214,244,205,0.05), transparent 60%),
+    radial-gradient(900px 520px at 86% 78%, rgba(74,138,119,0.05), transparent 60%);
+  filter: blur(2px);
+  opacity:.8;
+  animation: floatSlow 10s var(--ease) infinite;
+  pointer-events:none;
+}
+
+.slide > *{ position:relative; z-index:1; }
+
 .slide--dark{
   background:
     radial-gradient(900px 520px at 18% 10%, rgba(214,244,205,0.07), transparent 55%),
@@ -286,7 +380,7 @@ button:focus-visible{
   padding-block: clamp(110px, 16vh, 170px);
 }
 
-/* layout variant: stacked slide (centered head + full width content) */
+/* layout variant: stacked slide */
 .slide--stacked{
   padding-block: clamp(86px, 10vh, 120px);
 }
@@ -347,6 +441,12 @@ button:focus-visible{
   background: rgba(253,251,252,0.06);
   border: 1px solid rgba(253,251,252,0.12);
   box-shadow: var(--shadow2);
+  transition: transform 220ms var(--ease), box-shadow 220ms var(--ease), background-color 220ms var(--ease);
+}
+.metaCard:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 22px 60px rgba(0,0,0,0.20);
+  background: rgba(253,251,252,0.07);
 }
 
 .metaCard__k{ display:block; font-size:12px; font-weight:500; opacity:.86; }
@@ -439,10 +539,10 @@ button:focus-visible{
   display:grid;
   justify-items:stretch;
   gap:12px;
-  min-width: 0;
+  min-width: 0; /* ✅ prevents overflow out of container */
 }
 
-/* CARDS / SPACING HELPERS */
+/* CARDS */
 .callout{
   margin-top:18px;
   padding:18px;
@@ -450,8 +550,14 @@ button:focus-visible{
   background: rgba(253,251,252,0.06);
   border: 1px solid rgba(253,251,252,0.12);
   box-shadow: var(--shadow2);
+  transition: transform 220ms var(--ease), background-color 220ms var(--ease), border-color 220ms var(--ease);
 }
 .callout strong{ display:block; font-size:13px; margin-bottom:8px; }
+.callout:hover{
+  transform: translateY(-2px);
+  background: rgba(253,251,252,0.07);
+  border-color: rgba(253,251,252,0.16);
+}
 
 .infoGrid{
   margin-top:16px;
@@ -466,8 +572,14 @@ button:focus-visible{
   background: rgba(36,50,53,0.16);
   border: 1px solid rgba(253,251,252,0.14);
   min-width: 0;
+  transition: transform 220ms var(--ease), border-color 220ms var(--ease), background-color 220ms var(--ease);
 }
 .infoCard strong{ display:block; font-size:13px; margin-bottom:8px; }
+.infoCard:hover{
+  transform: translateY(-2px);
+  border-color: rgba(253,251,252,0.18);
+  background: rgba(36,50,53,0.18);
+}
 
 .listStack{
   margin-top:16px;
@@ -480,8 +592,14 @@ button:focus-visible{
   border-radius: var(--r-lg);
   background: rgba(36,50,53,0.16);
   border: 1px solid rgba(253,251,252,0.14);
+  transition: transform 220ms var(--ease), border-color 220ms var(--ease), background-color 220ms var(--ease);
 }
 .listCard strong{ display:block; font-size:13px; margin-bottom:8px; }
+.listCard:hover{
+  transform: translateY(-2px);
+  border-color: rgba(253,251,252,0.18);
+  background: rgba(36,50,53,0.18);
+}
 
 /* LISTS */
 .ul{
@@ -520,42 +638,44 @@ button:focus-visible{
   font-size:12px;
   font-weight:400;
   opacity:.95;
+  transition: transform 180ms var(--ease), background-color 180ms var(--ease), border-color 180ms var(--ease);
+}
+.chip:hover{
+  transform: translateY(-1px);
+  background: rgba(36,50,53,0.16);
+  border-color: rgba(253,251,252,0.26);
 }
 
 /* =========================
-   MEDIA (ALL IMAGES FIXED)
+   MEDIA FRAME (images inside container)
    ========================= */
 
-/* MEDIA FRAME (for screenshots/mockups/images) */
 .mediaFrame{
   width:100%;
+  max-width:100%;
   border-radius: var(--r-lg);
   background: rgba(253,251,252,0.06);
   border: 1px solid rgba(253,251,252,0.12);
   box-shadow: var(--shadow);
   overflow:hidden;
-
-  /* ✅ allow image to fill remaining height */
-  display:flex;
-  flex-direction:column;
-
+  display:grid;
+  grid-template-rows: 1fr auto;
   min-height: 420px;
+  min-width: 0; /* ✅ prevents grid overflow */
+  transform: translateZ(0);
+  transition: transform 240ms var(--ease), box-shadow 240ms var(--ease), border-color 240ms var(--ease);
+}
+.mediaFrame:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 28px 80px rgba(0,0,0,0.24);
+  border-color: rgba(253,251,252,0.16);
 }
 
+/* if you use .mediaFrame--tall */
 .mediaFrame--tall{ min-height: 560px; }
 
-/* image inside mediaFrame */
-.mediaFrame .mediaImg{
-  flex: 1 1 auto;
-  width:100%;
-  height:100%;
-  display:block;
-  object-fit: cover;
-}
-
-/* placeholder can still exist (no image) */
+/* placeholder area */
 .mediaFrame__ph{
-  flex: 1 1 auto;
   display:grid;
   place-items:center;
   text-align:center;
@@ -567,60 +687,13 @@ button:focus-visible{
     rgba(36,50,53,0.10);
 }
 
-/* caption always sticks to bottom */
-.mediaFrame .caption{
-  flex: 0 0 auto;
-  padding: 12px 14px;
-}
-
-/* DEMO VIDEO (if you swap placeholder for <video>) */
-.videoFrame > video{
+/* ✅ for real images/videos inside mediaFrame */
+.mediaFrame img,
+.mediaFrame video{
   width:100%;
   height:100%;
   display:block;
   object-fit: cover;
-}
-
-/* ANIMATION TILES (image fill support) */
-.tile{
-  border-radius: var(--r-lg);
-  background: rgba(36,50,53,0.14);
-  border:1px solid rgba(253,251,252,0.18);
-  overflow:hidden;
-  box-shadow: var(--shadow2);
-
-  /* ✅ allow image to fill */
-  display:flex;
-  flex-direction:column;
-
-  min-height: 360px;
-}
-
-.tile__ph{
-  flex: 1 1 auto;
-  display:grid;
-  place-items:center;
-  font-weight:600;
-  opacity:.88;
-  padding:24px;
-  background: rgba(253,251,252,0.08);
-}
-
-.tile .tileImg{
-  flex: 1 1 auto;
-  width:100%;
-  height:100%;
-  display:block;
-  object-fit: cover;
-}
-
-.tile__cap{
-  flex: 0 0 auto;
-  margin:0;
-  padding:14px;
-  font-size:12px;
-  opacity:.80;
-  font-weight:300;
 }
 
 /* FLOW */
@@ -637,6 +710,12 @@ button:focus-visible{
   border-radius: var(--r-lg);
   background: rgba(36,50,53,0.16);
   border: 1px solid rgba(253,251,252,0.14);
+  transition: transform 220ms var(--ease), border-color 220ms var(--ease), background-color 220ms var(--ease);
+}
+.step:hover{
+  transform: translateY(-2px);
+  border-color: rgba(253,251,252,0.18);
+  background: rgba(36,50,53,0.18);
 }
 .step__nr{
   width:34px;
@@ -659,6 +738,12 @@ button:focus-visible{
   overflow:hidden;
   aspect-ratio: 16/9;
   width:100%;
+  transition: transform 240ms var(--ease), box-shadow 240ms var(--ease), border-color 240ms var(--ease);
+}
+.videoFrame:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 28px 80px rgba(0,0,0,0.24);
+  border-color: rgba(253,251,252,0.16);
 }
 .videoPH{
   height:100%;
@@ -675,6 +760,72 @@ button:focus-visible{
 .videoPH span{ font-family:"Playfair Display", serif; font-size:22px; }
 .videoPH small{ opacity:.75; font-weight:300; }
 
+/* =========================
+   ANIMATIONS (FIX SIZE + 2x2)
+   ========================= */
+
+.grid2{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap:16px;
+  width:100%;
+  align-items:start;
+}
+
+.tile{
+  border-radius: var(--r-lg);
+  background: rgba(36,50,53,0.14);
+  border:1px solid rgba(253,251,252,0.18);
+  overflow:hidden;
+  box-shadow: var(--shadow2);
+
+  display:flex;
+  flex-direction:column;
+
+  min-height: unset;
+  transition: transform 220ms var(--ease), box-shadow 220ms var(--ease), border-color 220ms var(--ease);
+}
+.tile:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 22px 60px rgba(0,0,0,0.20);
+  border-color: rgba(253,251,252,0.22);
+}
+
+.tile__ph{
+  aspect-ratio: 9 / 16;
+  height:auto;
+
+  display:grid;
+  place-items:center;
+  font-weight:600;
+  opacity:.88;
+
+  padding:16px;
+
+  background:
+    radial-gradient(700px 260px at 20% 0%, rgba(214,244,205,0.10), transparent 62%),
+    radial-gradient(700px 260px at 90% 60%, rgba(74,138,119,0.10), transparent 60%),
+    rgba(253,251,252,0.08);
+}
+
+/* for real assets */
+.tile .tileImg,
+.tile video{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit: cover;
+  aspect-ratio: 9 / 16;
+}
+
+.tile__cap{
+  margin:0;
+  padding:12px 14px;
+  font-size:12px;
+  opacity:.80;
+  font-weight:300;
+}
+
 /* DESIGN PALETTE */
 .palette{
   width:100%;
@@ -690,6 +841,11 @@ button:focus-visible{
   align-items:center;
   padding:0 14px;
   box-shadow: var(--shadow2);
+  transition: transform 200ms var(--ease), box-shadow 200ms var(--ease);
+}
+.sw:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 22px 60px rgba(0,0,0,0.18);
 }
 .sw span{ font-size:12px; opacity:.86; font-weight:500; }
 .sw--primary{ background: rgba(36,50,53,1); }
@@ -710,7 +866,14 @@ button:focus-visible{
   border:1px solid rgba(253,251,252,0.12);
   box-shadow: var(--shadow2);
   padding:16px;
+  transition: transform 220ms var(--ease), border-color 220ms var(--ease), background-color 220ms var(--ease);
 }
+.typeCard:hover{
+  transform: translateY(-2px);
+  border-color: rgba(253,251,252,0.16);
+  background: rgba(253,251,252,0.07);
+}
+
 .typeRow{
   display:flex;
   justify-content:space-between;
@@ -736,6 +899,12 @@ button:focus-visible{
   border:1px solid rgba(253,251,252,0.12);
   box-shadow: var(--shadow2);
   padding:18px;
+  transition: transform 220ms var(--ease), border-color 220ms var(--ease), background-color 220ms var(--ease);
+}
+.techCard:hover{
+  transform: translateY(-2px);
+  border-color: rgba(253,251,252,0.16);
+  background: rgba(253,251,252,0.07);
 }
 
 /* REFLECTION */
@@ -752,6 +921,12 @@ button:focus-visible{
   border:1px solid rgba(253,251,252,0.12);
   box-shadow: var(--shadow2);
   padding:18px;
+  transition: transform 220ms var(--ease), border-color 220ms var(--ease), background-color 220ms var(--ease);
+}
+.reflectCard:hover{
+  transform: translateY(-2px);
+  border-color: rgba(253,251,252,0.16);
+  background: rgba(253,251,252,0.07);
 }
 
 /* CLOSING */
@@ -844,8 +1019,15 @@ button:focus-visible{
   text-align:right;
 }
 
-.footer__right a{ font-size:12px; opacity:.78; }
-.footer__right a:hover{ opacity:1; }
+.footer__right a{
+  font-size:12px;
+  opacity:.78;
+  transition: opacity 160ms var(--ease), transform 160ms var(--ease);
+}
+.footer__right a:hover{
+  opacity:1;
+  transform: translateY(-1px);
+}
 
 .footer__bottom{ margin-top:16px; text-align:center; }
 
