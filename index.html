@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ATEATUDE — Presentation Landing</title>
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -14,7 +13,6 @@
       rel="stylesheet"
     />
 
-    <!-- Swiper (CDN) -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
@@ -24,19 +22,14 @@
   </head>
 
   <body>
-    <!-- Sticky top nav -->
-    <header class="nav" id="top">
+    <header class="nav">
       <div class="container nav__inner">
         <a class="brand" href="#top" aria-label="Go to top">
-          <img
-            class="brand__logo"
-            src="assets/MounteaLogo.png"
-            alt="ATEATUDE logo"
-          />
+          <img class="brand__logo" src="assets/MounteaLogo.png" alt="ATEATUDE logo" />
           <span class="brand__name">ATEATUDE</span>
         </a>
 
-        <nav class="nav__links" aria-label="Primary navigation">
+        <nav class="nav__links" aria-label="Primary">
           <a href="#concept">Concept</a>
           <a href="#research">Research</a>
           <a href="#design">Design choices</a>
@@ -46,15 +39,13 @@
           <a href="#reflection">Reflection</a>
         </nav>
 
-        <div class="nav__cta">
-          <a class="btn btn--primary" href="#demo">Watch demo</a>
-        </div>
+        <a class="btn btn--primary" href="#demo">Watch demo</a>
       </div>
     </header>
 
-    <main>
+    <main id="top">
       <!-- HERO -->
-      <section class="slide slide--hero slide--dark" id="hero" aria-label="Hero">
+      <section class="slide slide--hero slide--dark" id="hero">
         <div class="bgOrbs" aria-hidden="true">
           <div class="orb orb--a"></div>
           <div class="orb orb--b"></div>
@@ -68,7 +59,7 @@
           <h1 class="h1">
             ATEATUDE —
             <span class="accent">a calm tea journal</span>
-            built for presence.
+            that helps you slow down.
           </h1>
 
           <p class="lead">
@@ -81,16 +72,16 @@
             <a class="btn btn--ghost btn--lg" href="#research">View research</a>
           </div>
 
-          <div class="hero__meta" role="list" aria-label="Quick summary">
-            <div class="metaCard" role="listitem">
+          <div class="hero__meta">
+            <div class="metaCard">
               <span class="metaCard__k">Focus</span>
               <span class="metaCard__v">Mindful logging</span>
             </div>
-            <div class="metaCard" role="listitem">
+            <div class="metaCard">
               <span class="metaCard__k">Design</span>
               <span class="metaCard__v">Swiss / calm / premium</span>
             </div>
-            <div class="metaCard" role="listitem">
+            <div class="metaCard">
               <span class="metaCard__k">Outcome</span>
               <span class="metaCard__v">Clear, present, personal</span>
             </div>
@@ -103,19 +94,17 @@
       </section>
 
       <!-- CONCEPT -->
-      <section class="slide slide--green" id="concept" aria-label="Concept section">
+      <section class="slide slide--green" id="concept">
         <div class="container slideGrid">
           <div class="slideCopy">
             <p class="eyebrow">01 — Concept</p>
             <h2 class="h2">Tea as a moment, not a habit</h2>
-
-            <!-- Replace text content freely -->
             <p class="p">
               ATEATUDE reframes tea drinking as a ritual. Instead of speed and distraction, the app
               supports presence: what you taste, how you feel, and what you want to remember.
             </p>
 
-            <div class="chips" aria-label="Concept tags">
+            <div class="chips">
               <span class="chip">Ritual-first</span>
               <span class="chip">Taste notes</span>
               <span class="chip">Mood + reflection</span>
@@ -124,68 +113,161 @@
           </div>
 
           <div class="slideMedia">
-            <!-- Replace with your mockup (image/video) -->
-            <figure class="mediaBlock">
-              <div class="frame frame--phone">
-                <div class="frame__inner">
-                  <div class="ph ph--dot"></div>
-                  <div class="ph ph--line"></div>
-                  <div class="ph ph--line ph--line2"></div>
-                  <div class="ph ph--btn"></div>
-                </div>
+            <div class="frame frame--phone">
+              <div class="frame__inner">
+                <div class="ph ph--dot"></div>
+                <div class="ph ph--line"></div>
+                <div class="ph ph--line ph--line2"></div>
+                <div class="ph ph--btn"></div>
               </div>
-              <figcaption class="caption">Replace with your Concept mockup</figcaption>
-            </figure>
+            </div>
+            <p class="caption">Replace with your Concept mockup</p>
           </div>
         </div>
       </section>
 
-      <!-- RESEARCH -->
-      <section class="slide slide--dark" id="research" aria-label="Research section">
-        <div class="container slideHead">
-          <p class="eyebrow">02 — Research</p>
-          <h2 class="h2">Screenshots & findings</h2>
-          <p class="p p--muted">
-            Add your research screenshots and scroll horizontally through them.
-          </p>
-        </div>
-
+      <!-- RESEARCH (FULL SECTION SWIPE) -->
+      <section class="slide slide--dark" id="research">
         <div class="container">
-          <div class="swiper researchSwiper" aria-label="Research slider">
+          <div class="researchHeader">
+            <p class="eyebrow">02 — Research</p>
+            <h2 class="h2">Research, competitors, problem & solution</h2>
+            <p class="p p--muted">Swipe through the full research story.</p>
+          </div>
+
+          <div class="swiper researchDeck">
             <div class="swiper-wrapper">
-              <!-- Replace with images:
-                   <img class="shot__img" src="assets/research/01.png" alt="..." />
-              -->
               <div class="swiper-slide">
-                <figure class="shot">
-                  <div class="shot__ph">Research screenshot 01</div>
-                  <figcaption class="shot__cap">Insight headline / short takeaway</figcaption>
-                </figure>
+                <div class="rSlide">
+                  <div class="rGrid">
+                    <div class="rCopy">
+                      <h3 class="rTitle">01 — What I researched</h3>
+                      <p class="p p--muted">Write a short overview of what you explored and why.</p>
+
+                      <div class="rList">
+                        <div class="rItem"><strong>Topic</strong><p class="p p--muted">Add your note here.</p></div>
+                        <div class="rItem"><strong>Topic</strong><p class="p p--muted">Add your note here.</p></div>
+                        <div class="rItem"><strong>Topic</strong><p class="p p--muted">Add your note here.</p></div>
+                      </div>
+                    </div>
+
+                    <div class="rMedia">
+                      <div class="rCard">
+                        <div class="rCard__ph">Drop screenshots collage / 1 key image here</div>
+                        <p class="rCard__cap">Optional caption</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <div class="swiper-slide">
-                <figure class="shot">
-                  <div class="shot__ph">Research screenshot 02</div>
-                  <figcaption class="shot__cap">Insight headline / short takeaway</figcaption>
-                </figure>
+                <div class="rSlide">
+                  <div class="rGrid">
+                    <div class="rCopy">
+                      <h3 class="rTitle">02 — Competitor analysis</h3>
+                      <p class="p p--muted">Competitor 1: what works, what fails, what you take.</p>
+
+                      <div class="rList">
+                        <div class="rItem"><strong>What works</strong><p class="p p--muted">Short bullets / 2–3 lines.</p></div>
+                        <div class="rItem"><strong>What fails</strong><p class="p p--muted">Short bullets / 2–3 lines.</p></div>
+                        <div class="rItem"><strong>Takeaway</strong><p class="p p--muted">What you apply to ATEATUDE.</p></div>
+                      </div>
+                    </div>
+
+                    <div class="rMedia">
+                      <div class="rCard">
+                        <div class="rCard__ph">Competitor screenshots here</div>
+                        <p class="rCard__cap">Competitor 1 — key screens</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <div class="swiper-slide">
-                <figure class="shot">
-                  <div class="shot__ph">Research screenshot 03</div>
-                  <figcaption class="shot__cap">Insight headline / short takeaway</figcaption>
-                </figure>
+                <div class="rSlide">
+                  <div class="rGrid">
+                    <div class="rCopy">
+                      <h3 class="rTitle">03 — Competitor analysis 2</h3>
+                      <p class="p p--muted">Competitor 2: what works, what fails, what you take.</p>
+
+                      <div class="rList">
+                        <div class="rItem"><strong>What works</strong><p class="p p--muted">Short bullets / 2–3 lines.</p></div>
+                        <div class="rItem"><strong>What fails</strong><p class="p p--muted">Short bullets / 2–3 lines.</p></div>
+                        <div class="rItem"><strong>Takeaway</strong><p class="p p--muted">What you apply to ATEATUDE.</p></div>
+                      </div>
+                    </div>
+
+                    <div class="rMedia">
+                      <div class="rCard">
+                        <div class="rCard__ph">Competitor screenshots here</div>
+                        <p class="rCard__cap">Competitor 2 — key screens</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <div class="swiper-slide">
-                <figure class="shot">
-                  <div class="shot__ph">Research screenshot 04</div>
-                  <figcaption class="shot__cap">Insight headline / short takeaway</figcaption>
-                </figure>
+                <div class="rSlide">
+                  <div class="rGrid">
+                    <div class="rCopy">
+                      <h3 class="rTitle">04 — Problem</h3>
+                      <p class="p p--muted">Describe the core problem your app responds to.</p>
+
+                      <div class="rBig">
+                        <strong>Problem statement</strong>
+                        <p class="p p--muted">Paste your final problem text here.</p>
+                      </div>
+
+                      <div class="rList">
+                        <div class="rItem"><strong>Who</strong><p class="p p--muted">Target group.</p></div>
+                        <div class="rItem"><strong>Why now</strong><p class="p p--muted">Context / urgency.</p></div>
+                      </div>
+                    </div>
+
+                    <div class="rMedia">
+                      <div class="rCard">
+                        <div class="rCard__ph">Optional: photo / mood / diagram</div>
+                        <p class="rCard__cap">Problem visual</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="swiper-slide">
+                <div class="rSlide">
+                  <div class="rGrid">
+                    <div class="rCopy">
+                      <h3 class="rTitle">05 — Solution</h3>
+                      <p class="p p--muted">Explain how ATEATUDE solves the problem.</p>
+
+                      <div class="rBig">
+                        <strong>Solution statement</strong>
+                        <p class="p p--muted">Paste your final solution text here.</p>
+                      </div>
+
+                      <div class="rList">
+                        <div class="rItem"><strong>Feature 1</strong><p class="p p--muted">What it does + benefit.</p></div>
+                        <div class="rItem"><strong>Feature 2</strong><p class="p p--muted">What it does + benefit.</p></div>
+                        <div class="rItem"><strong>Feature 3</strong><p class="p p--muted">What it does + benefit.</p></div>
+                      </div>
+                    </div>
+
+                    <div class="rMedia">
+                      <div class="rCard">
+                        <div class="rCard__ph">Drop “solution” mockup / key screen here</div>
+                        <p class="rCard__cap">Solution visual</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div class="swiper-controls" aria-hidden="true">
+            <div class="researchNav">
               <div class="swiper-button-prev"></div>
               <div class="swiper-pagination"></div>
               <div class="swiper-button-next"></div>
@@ -194,20 +276,18 @@
         </div>
       </section>
 
-      <!-- DESIGN CHOICES -->
-      <section class="slide slide--green" id="design" aria-label="Design choices section">
+      <!-- DESIGN -->
+      <section class="slide slide--green" id="design">
         <div class="container slideGrid">
           <div class="slideCopy">
             <p class="eyebrow">03 — Design choices</p>
             <h2 class="h2">Calm typography, high clarity</h2>
-
-            <!-- Replace text content freely -->
             <p class="p">
               Playfair Display for expressive headings, Poppins for clean readability. Spacing stays
               generous to keep cognitive load low.
             </p>
 
-            <div class="bullets" aria-label="Design choices bullets">
+            <div class="bullets">
               <div class="bullet">
                 <span class="bullet__dot"></span>
                 <div>
@@ -215,7 +295,6 @@
                   <p>Clear H1/H2 rhythm + short paragraphs.</p>
                 </div>
               </div>
-
               <div class="bullet">
                 <span class="bullet__dot"></span>
                 <div>
@@ -223,7 +302,6 @@
                   <p>Primary base + green accents, no harsh contrast.</p>
                 </div>
               </div>
-
               <div class="bullet">
                 <span class="bullet__dot"></span>
                 <div>
@@ -235,14 +313,14 @@
           </div>
 
           <div class="slideMedia">
-            <div class="palette" aria-label="Color palette">
+            <div class="palette">
               <div class="sw sw--primary"><span>#243235</span></div>
               <div class="sw sw--secondary"><span>#4A8A77</span></div>
               <div class="sw sw--soft"><span>#7D9B93</span></div>
               <div class="sw sw--mint"><span>#D6F4CD</span></div>
             </div>
 
-            <div class="typeCard" aria-label="Type system">
+            <div class="typeCard">
               <h3 class="h3">Type system</h3>
               <div class="typeRow">
                 <span class="typeTag">H1</span>
@@ -262,7 +340,7 @@
       </section>
 
       <!-- DEMO -->
-      <section class="slide slide--dark" id="demo" aria-label="Demo section">
+      <section class="slide slide--dark" id="demo">
         <div class="container slideHead">
           <p class="eyebrow">04 — Demo</p>
           <h2 class="h2">Walkthrough video</h2>
@@ -271,29 +349,23 @@
 
         <div class="container">
           <div class="videoFrame">
-            <!-- Replace with:
-                 <video class="video" src="assets/demo.mp4" controls playsinline></video>
-            -->
             <div class="videoPH">
               <span>Drop demo video here</span>
-              <small>Use MP4 / WebM</small>
+              <small>Use MP4 / webm</small>
             </div>
           </div>
         </div>
       </section>
 
       <!-- ANIMATIONS -->
-      <section class="slide slide--green" id="animations" aria-label="Animations section">
+      <section class="slide slide--green" id="animations">
         <div class="container slideHead">
           <p class="eyebrow">05 — Animations</p>
           <h2 class="h2">Micro-interactions</h2>
-          <p class="p p--muted">
-            Replace each tile with a small clip (muted, looping works great).
-          </p>
+          <p class="p p--muted">Replace each tile with a small clip (muted, looping works great).</p>
         </div>
 
         <div class="container grid4">
-          <!-- Replace each .tile__ph with a <video> or <img> -->
           <div class="tile">
             <div class="tile__ph">Animation 01</div>
             <p class="tile__cap">Toast feedback</p>
@@ -314,15 +386,14 @@
       </section>
 
       <!-- MOCKUPS -->
-      <section class="slide slide--dark" id="mockups" aria-label="Mockups section">
+      <section class="slide slide--dark" id="mockups">
         <div class="container slideHead">
           <p class="eyebrow">06 — Mockups</p>
           <h2 class="h2">Key screens</h2>
           <p class="p p--muted">Replace placeholders with your final mockups.</p>
         </div>
 
-        <div class="container mockRack" aria-label="Mockups rack">
-          <!-- Replace each card with an <img> -->
+        <div class="container mockRack">
           <div class="mockCard">Mockup 01</div>
           <div class="mockCard mockCard--front">Mockup 02</div>
           <div class="mockCard">Mockup 03</div>
@@ -330,18 +401,16 @@
       </section>
 
       <!-- REFLECTION -->
-      <section class="slide slide--dark" id="reflection" aria-label="Reflection section">
+      <section class="slide slide--dark" id="reflection">
         <div class="container final">
           <p class="eyebrow">07 — Reflection</p>
           <h2 class="final__title">Reflection of process & progress</h2>
-
-          <!-- Replace text content freely -->
           <p class="final__sub">
             What I learned, what changed during iterations, what I would improve next, and how the
             project shaped my design decisions.
           </p>
 
-          <div class="final__grid" aria-label="Reflection cards">
+          <div class="final__grid">
             <div class="finalCard">
               <h3 class="h3">What worked</h3>
               <p class="p p--muted">Short notes: clarity, calm UI, readable hierarchy.</p>
@@ -362,35 +431,32 @@
           </div>
         </div>
       </section>
+
+      <!-- FOOTER (OUTSIDE reflection section) -->
+      <footer class="footer">
+        <div class="container footer__inner">
+          <div class="footer__left">
+            <img class="footer__logo" src="assets/MounteaLogo.png" alt="ATEATUDE logo" />
+            <div>
+              <div class="footer__brand">ATEATUDE</div>
+              <div class="footer__muted">A mindful way to experience tea</div>
+            </div>
+          </div>
+
+          <div class="footer__right">
+            <a href="#concept">Concept</a>
+            <a href="#research">Research</a>
+            <a href="#demo">Demo</a>
+          </div>
+        </div>
+
+        <div class="container footer__bottom">
+          <span class="footer__muted">© <span id="y"></span> ATEATUDE</span>
+        </div>
+      </footer>
     </main>
 
-    <!-- FOOTER (outside sections, fixes layout bugs) -->
-    <footer class="footer">
-  <div class="container">
-    <div class="footer__inner">
-      <div class="footer__left">
-        <img class="footer__logo" src="assets/MounteaLogo.png" alt="ATEATUDE logo" />
-        <div>
-          <div class="footer__brand">ATEATUDE</div>
-          <div class="footer__muted">A mindful way to experience tea</div>
-        </div>
-      </div>
-
-      <div class="footer__right">
-        <a href="#concept">Concept</a>
-        <a href="#research">Research</a>
-        <a href="#demo">Demo</a>
-      </div>
-    </div>
-
-    <div class="footer__bottom">
-      <span class="footer__muted">© <span id="y"></span> ATEATUDE</span>
-    </div>
-  </div>
-</footer>
-
-    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="main.js" defer></script>
+    <script src="main.js"></script>
   </body>
 </html>
