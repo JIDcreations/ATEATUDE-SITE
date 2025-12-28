@@ -25,24 +25,86 @@
           <span class="brand__name">ATEATUDE</span>
         </a>
 
+        <!-- ✅ UPDATED: dropdown nav (desktop) -->
         <nav class="nav__links" aria-label="Primary">
-          <a href="#hero">Intro</a>
-          <a href="#problem">Problem</a>
-          <a href="#concept">Concept</a>
-          <a href="#research">Research</a>
-          <a href="#flow">User flow</a>
-          <a href="#demo">Demo</a>
-          <a href="#animations">Animations</a>
-          <a href="#design">Design</a>
-          <a href="#tech">Tech</a>
-          <a href="#reflection">Reflection</a>
-          <a href="#next">Next</a>
-          <a href="#closing">Closing</a>
+          <div class="dd">
+            <button class="dd__btn" type="button" aria-haspopup="true" aria-expanded="false">
+              Presentation
+              <span class="dd__chev" aria-hidden="true"></span>
+            </button>
+
+            <div class="dd__menu" role="menu">
+              <a role="menuitem" href="#hero">Intro</a>
+              <a role="menuitem" href="#problem">Problem</a>
+              <a role="menuitem" href="#concept">Concept</a>
+              <a role="menuitem" href="#research">Research</a>
+              <a role="menuitem" href="#flow">User flow</a>
+              <a role="menuitem" href="#demo">Demo</a>
+            </div>
+          </div>
+
+          <div class="dd">
+            <button class="dd__btn" type="button" aria-haspopup="true" aria-expanded="false">
+              Product
+              <span class="dd__chev" aria-hidden="true"></span>
+            </button>
+
+            <div class="dd__menu" role="menu">
+              <a role="menuitem" href="#animations">Animations</a>
+              <a role="menuitem" href="#design">Design</a>
+              <a role="menuitem" href="#tech">Tech</a>
+            </div>
+          </div>
+
+          <div class="dd">
+            <button class="dd__btn" type="button" aria-haspopup="true" aria-expanded="false">
+              Wrap-up
+              <span class="dd__chev" aria-hidden="true"></span>
+            </button>
+
+            <div class="dd__menu" role="menu">
+              <a role="menuitem" href="#reflection">Reflection</a>
+              <a role="menuitem" href="#next">Next</a>
+              <a role="menuitem" href="#closing">Closing</a>
+            </div>
+          </div>
         </nav>
+
+        <!-- ✅ NEW: burger for mobile -->
+        <button class="nav__burger" type="button" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
 
         <a class="btn btn--primary" href="#problem">Start</a>
       </div>
     </header>
+
+    <!-- ✅ NEW: mobile nav panel (only shown on small screens) -->
+    <div class="navPanel" id="navPanel" aria-hidden="true">
+      <div class="navPanel__group">
+        <div class="navPanel__title">Presentation</div>
+        <a href="#hero">Intro</a>
+        <a href="#problem">Problem</a>
+        <a href="#concept">Concept</a>
+        <a href="#research">Research</a>
+        <a href="#flow">User flow</a>
+        <a href="#demo">Demo</a>
+      </div>
+
+      <div class="navPanel__group">
+        <div class="navPanel__title">Product</div>
+        <a href="#animations">Animations</a>
+        <a href="#design">Design</a>
+        <a href="#tech">Tech</a>
+      </div>
+
+      <div class="navPanel__group">
+        <div class="navPanel__title">Wrap-up</div>
+        <a href="#reflection">Reflection</a>
+        <a href="#next">Next</a>
+        <a href="#closing">Closing</a>
+      </div>
+    </div>
 
     <main id="top">
       <!-- 1) INTRO / HERO (minimal + calm) -->
@@ -50,9 +112,7 @@
         <div class="container hero">
           <p class="kicker">A calm tea journal</p>
 
-          <h1 class="h1">
-            ATEATUDE
-          </h1>
+          <h1 class="h1">ATEATUDE</h1>
 
           <p class="lead">
             Log teas, capture taste, and reflect on small rituals — with a minimal UI and deliberate motion.
