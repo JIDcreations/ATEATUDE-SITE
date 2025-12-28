@@ -13,15 +13,11 @@
       rel="stylesheet"
     />
 
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-    />
-
     <link rel="stylesheet" href="styles/main.css" />
   </head>
 
   <body>
+    <!-- NAV -->
     <header class="nav">
       <div class="container nav__inner">
         <a class="brand" href="#top" aria-label="Go to top">
@@ -30,46 +26,41 @@
         </a>
 
         <nav class="nav__links" aria-label="Primary">
+          <a href="#hero">Intro</a>
+          <a href="#problem">Problem</a>
           <a href="#concept">Concept</a>
           <a href="#research">Research</a>
-          <a href="#design">Design choices</a>
+          <a href="#flow">User flow</a>
           <a href="#demo">Demo</a>
           <a href="#animations">Animations</a>
-          <a href="#mockups">Mockups</a>
+          <a href="#design">Design</a>
+          <a href="#tech">Tech</a>
           <a href="#reflection">Reflection</a>
+          <a href="#next">Next</a>
+          <a href="#closing">Closing</a>
         </nav>
 
-        <a class="btn btn--primary" href="#demo">Watch demo</a>
+        <a class="btn btn--primary" href="#problem">Start</a>
       </div>
     </header>
 
     <main id="top">
-      <!-- HERO -->
+      <!-- 1) INTRO / HERO (minimal + calm) -->
       <section class="slide slide--hero slide--dark" id="hero">
-        <div class="bgOrbs" aria-hidden="true">
-          <div class="orb orb--a"></div>
-          <div class="orb orb--b"></div>
-          <div class="orb orb--c"></div>
-          <div class="grain"></div>
-        </div>
-
         <div class="container hero">
-          <p class="kicker">A mindful way to experience tea</p>
+          <p class="kicker">A calm tea journal</p>
 
           <h1 class="h1">
-            ATEATUDE —
-            <span class="accent">a calm tea journal</span>
-            that helps you slow down.
+            ATEATUDE
           </h1>
 
           <p class="lead">
-            Log teas, capture taste, and reflect on small rituals. Minimal UI, deliberate motion,
-            zero noise.
+            Log teas, capture taste, and reflect on small rituals — with a minimal UI and deliberate motion.
           </p>
 
           <div class="hero__actions">
-            <a class="btn btn--primary btn--lg" href="#concept">Start presentation</a>
-            <a class="btn btn--ghost btn--lg" href="#research">View research</a>
+            <a class="btn btn--primary btn--lg" href="#problem">Start presentation</a>
+            <a class="btn btn--ghost btn--lg" href="#demo">Jump to demo</a>
           </div>
 
           <div class="hero__meta">
@@ -78,7 +69,7 @@
               <span class="metaCard__v">Mindful logging</span>
             </div>
             <div class="metaCard">
-              <span class="metaCard__k">Design</span>
+              <span class="metaCard__k">Style</span>
               <span class="metaCard__v">Swiss / calm / premium</span>
             </div>
             <div class="metaCard">
@@ -87,22 +78,74 @@
             </div>
           </div>
 
-          <a class="scrollHint" href="#concept" aria-label="Scroll to next section">
+          <a class="scrollHint" href="#problem" aria-label="Scroll to next section">
             <span class="scrollHint__mouse"></span>
           </a>
         </div>
       </section>
 
-      <!-- CONCEPT -->
+      <!-- 2) PROBLEM & CONTEXT -->
+      <section class="slide slide--dark" id="problem">
+        <div class="container slideGrid">
+          <div class="slideCopy">
+            <p class="eyebrow">02 — Problem & context</p>
+            <h2 class="h2">Tea gets rushed. Ritual gets lost.</h2>
+
+            <p class="p p--muted">
+              Describe the real-life friction: people drink tea on autopilot, can’t remember what they liked,
+              and never reflect on mood or taste. Keep it concrete.
+            </p>
+
+            <div class="callout">
+              <strong>Solution in one sentence</strong>
+              <p class="p p--muted">
+                ATEATUDE turns tea into a calm ritual: log taste, mood and reflection without noise.
+              </p>
+            </div>
+
+            <div class="infoGrid">
+              <div class="infoCard">
+                <strong>Who</strong>
+                <p class="p p--muted">Target group in 1–2 lines.</p>
+              </div>
+              <div class="infoCard">
+                <strong>Why now</strong>
+                <p class="p p--muted">Context / urgency in 1–2 lines.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="slideMedia">
+            <div class="mediaFrame">
+              <div class="mediaFrame__ph">Place an image / diagram / screenshot here</div>
+              <p class="caption">Context visual (replace with mockup/image)</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3) CONCEPT -->
       <section class="slide slide--green" id="concept">
         <div class="container slideGrid">
           <div class="slideCopy">
-            <p class="eyebrow">01 — Concept</p>
+            <p class="eyebrow">03 — Concept</p>
             <h2 class="h2">Tea as a moment, not a habit</h2>
+
             <p class="p">
-              ATEATUDE reframes tea drinking as a ritual. Instead of speed and distraction, the app
-              supports presence: what you taste, how you feel, and what you want to remember.
+              ATEATUDE reframes tea drinking as a ritual. Instead of speed and distraction, the app supports
+              presence: what you taste, how you feel, and what you want to remember.
             </p>
+
+            <div class="infoGrid">
+              <div class="infoCard">
+                <strong>Target audience</strong>
+                <p class="p p--muted">Who uses this app and why.</p>
+              </div>
+              <div class="infoCard">
+                <strong>Value proposition</strong>
+                <p class="p p--muted">What makes it different (1–2 lines).</p>
+              </div>
+            </div>
 
             <div class="chips">
               <span class="chip">Ritual-first</span>
@@ -113,201 +156,165 @@
           </div>
 
           <div class="slideMedia">
-            <div class="frame frame--phone">
-              <div class="frame__inner">
-                <div class="ph ph--dot"></div>
-                <div class="ph ph--line"></div>
-                <div class="ph ph--line ph--line2"></div>
-                <div class="ph ph--btn"></div>
-              </div>
+            <div class="mediaFrame mediaFrame--tall">
+              <div class="mediaFrame__ph">Drop Concept mockup here</div>
+              <p class="caption">Concept mockup</p>
             </div>
-            <p class="caption">Replace with your Concept mockup</p>
           </div>
         </div>
       </section>
 
-      <!-- RESEARCH (FULL SECTION SWIPE) -->
+      <!-- 4) RESEARCH (SHORT) -->
       <section class="slide slide--dark" id="research">
-        <div class="container">
-          <div class="researchHeader">
-            <p class="eyebrow">02 — Research</p>
-            <h2 class="h2">Research, competitors, problem & solution</h2>
-            <p class="p p--muted">Swipe through the full research story.</p>
-          </div>
-
-          <div class="swiper researchDeck">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                <div class="rSlide">
-                  <div class="rGrid">
-                    <div class="rCopy">
-                      <h3 class="rTitle">01 — What I researched</h3>
-                      <p class="p p--muted">Write a short overview of what you explored and why.</p>
-
-                      <div class="rList">
-                        <div class="rItem"><strong>Topic</strong><p class="p p--muted">Add your note here.</p></div>
-                        <div class="rItem"><strong>Topic</strong><p class="p p--muted">Add your note here.</p></div>
-                        <div class="rItem"><strong>Topic</strong><p class="p p--muted">Add your note here.</p></div>
-                      </div>
-                    </div>
-
-                    <div class="rMedia">
-                      <div class="rCard">
-                        <div class="rCard__ph">Drop screenshots collage / 1 key image here</div>
-                        <p class="rCard__cap">Optional caption</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="swiper-slide">
-                <div class="rSlide">
-                  <div class="rGrid">
-                    <div class="rCopy">
-                      <h3 class="rTitle">02 — Competitor analysis</h3>
-                      <p class="p p--muted">Competitor 1: what works, what fails, what you take.</p>
-
-                      <div class="rList">
-                        <div class="rItem"><strong>What works</strong><p class="p p--muted">Short bullets / 2–3 lines.</p></div>
-                        <div class="rItem"><strong>What fails</strong><p class="p p--muted">Short bullets / 2–3 lines.</p></div>
-                        <div class="rItem"><strong>Takeaway</strong><p class="p p--muted">What you apply to ATEATUDE.</p></div>
-                      </div>
-                    </div>
-
-                    <div class="rMedia">
-                      <div class="rCard">
-                        <div class="rCard__ph">Competitor screenshots here</div>
-                        <p class="rCard__cap">Competitor 1 — key screens</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="swiper-slide">
-                <div class="rSlide">
-                  <div class="rGrid">
-                    <div class="rCopy">
-                      <h3 class="rTitle">03 — Competitor analysis 2</h3>
-                      <p class="p p--muted">Competitor 2: what works, what fails, what you take.</p>
-
-                      <div class="rList">
-                        <div class="rItem"><strong>What works</strong><p class="p p--muted">Short bullets / 2–3 lines.</p></div>
-                        <div class="rItem"><strong>What fails</strong><p class="p p--muted">Short bullets / 2–3 lines.</p></div>
-                        <div class="rItem"><strong>Takeaway</strong><p class="p p--muted">What you apply to ATEATUDE.</p></div>
-                      </div>
-                    </div>
-
-                    <div class="rMedia">
-                      <div class="rCard">
-                        <div class="rCard__ph">Competitor screenshots here</div>
-                        <p class="rCard__cap">Competitor 2 — key screens</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="swiper-slide">
-                <div class="rSlide">
-                  <div class="rGrid">
-                    <div class="rCopy">
-                      <h3 class="rTitle">04 — Problem</h3>
-                      <p class="p p--muted">Describe the core problem your app responds to.</p>
-
-                      <div class="rBig">
-                        <strong>Problem statement</strong>
-                        <p class="p p--muted">Paste your final problem text here.</p>
-                      </div>
-
-                      <div class="rList">
-                        <div class="rItem"><strong>Who</strong><p class="p p--muted">Target group.</p></div>
-                        <div class="rItem"><strong>Why now</strong><p class="p p--muted">Context / urgency.</p></div>
-                      </div>
-                    </div>
-
-                    <div class="rMedia">
-                      <div class="rCard">
-                        <div class="rCard__ph">Optional: photo / mood / diagram</div>
-                        <p class="rCard__cap">Problem visual</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="swiper-slide">
-                <div class="rSlide">
-                  <div class="rGrid">
-                    <div class="rCopy">
-                      <h3 class="rTitle">05 — Solution</h3>
-                      <p class="p p--muted">Explain how ATEATUDE solves the problem.</p>
-
-                      <div class="rBig">
-                        <strong>Solution statement</strong>
-                        <p class="p p--muted">Paste your final solution text here.</p>
-                      </div>
-
-                      <div class="rList">
-                        <div class="rItem"><strong>Feature 1</strong><p class="p p--muted">What it does + benefit.</p></div>
-                        <div class="rItem"><strong>Feature 2</strong><p class="p p--muted">What it does + benefit.</p></div>
-                        <div class="rItem"><strong>Feature 3</strong><p class="p p--muted">What it does + benefit.</p></div>
-                      </div>
-                    </div>
-
-                    <div class="rMedia">
-                      <div class="rCard">
-                        <div class="rCard__ph">Drop “solution” mockup / key screen here</div>
-                        <p class="rCard__cap">Solution visual</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="researchNav">
-              <div class="swiper-button-prev"></div>
-              <div class="swiper-pagination"></div>
-              <div class="swiper-button-next"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- DESIGN -->
-      <section class="slide slide--green" id="design">
         <div class="container slideGrid">
           <div class="slideCopy">
-            <p class="eyebrow">03 — Design choices</p>
+            <p class="eyebrow">04 — Research (short)</p>
+            <h2 class="h2">What I researched and what it changed</h2>
+            <p class="p p--muted">Desk research + inspiration + quick competitor scan.</p>
+
+            <div class="listStack">
+              <div class="listCard">
+                <strong>Research types</strong>
+                <p class="p p--muted">Example: desk research, competitor scan, UI inspiration.</p>
+              </div>
+
+              <div class="listCard">
+                <strong>Top insights (2–3)</strong>
+                <ul class="ul">
+                  <li>Insight 01 — short but specific.</li>
+                  <li>Insight 02 — short but specific.</li>
+                  <li>Insight 03 — short but specific.</li>
+                </ul>
+              </div>
+
+              <div class="callout">
+                <strong>Translation to concept</strong>
+                <p class="p p--muted">
+                  Example: “Because apps are noisy, I designed a calm journaling flow with minimal choices.”
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="slideMedia">
+            <div class="mediaFrame">
+              <div class="mediaFrame__ph">Drop 1 collage / competitor screenshots / research summary image</div>
+              <p class="caption">Key research snapshot</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5) USER FLOW / WORKING -->
+      <section class="slide slide--green" id="flow">
+        <div class="container slideGrid">
+          <div class="slideCopy">
+            <p class="eyebrow">05 — User flow</p>
+            <h2 class="h2">How a user moves through the app</h2>
+            <p class="p p--muted">Explain the global flow in a simple, readable way.</p>
+
+            <div class="flowSteps">
+              <div class="step">
+                <span class="step__nr">1</span>
+                <div class="step__body">
+                  <strong>Create</strong>
+                  <p class="p p--muted">User logs a tea entry (name, type, steep time).</p>
+                </div>
+              </div>
+              <div class="step">
+                <span class="step__nr">2</span>
+                <div class="step__body">
+                  <strong>Reflect</strong>
+                  <p class="p p--muted">Taste notes + mood + short reflection.</p>
+                </div>
+              </div>
+              <div class="step">
+                <span class="step__nr">3</span>
+                <div class="step__body">
+                  <strong>Revisit</strong>
+                  <p class="p p--muted">Library + favorites + profile for review.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="slideMedia">
+            <div class="mediaFrame">
+              <div class="mediaFrame__ph">Place your user flow image here (PNG export / diagram)</div>
+              <p class="caption">User flow overview</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6) DEMO -->
+      <section class="slide slide--dark" id="demo">
+        <div class="container slideHead">
+          <p class="eyebrow">06 — Demo</p>
+          <h2 class="h2">Walkthrough video</h2>
+          <p class="p p--muted">Replace this placeholder with your MP4/WebM (or embed).</p>
+        </div>
+
+        <div class="container">
+          <div class="videoFrame">
+            <div class="videoPH">
+              <span>Drop demo video here</span>
+              <small>MP4 / WebM</small>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7) ANIMATIONS & INTERACTIONS -->
+      <section class="slide slide--green" id="animations">
+        <div class="container slideHead">
+          <p class="eyebrow">07 — Animations & interactions</p>
+          <h2 class="h2">Functional motion</h2>
+          <p class="p p--muted">Place short clips. Explain what each adds to UX.</p>
+        </div>
+
+        <div class="container grid2">
+          <div class="tile">
+            <div class="tile__ph">Animation clip 01</div>
+            <p class="tile__cap">What it does (feedback, clarity, state).</p>
+          </div>
+          <div class="tile">
+            <div class="tile__ph">Animation clip 02</div>
+            <p class="tile__cap">What it does (guidance, calmness, pacing).</p>
+          </div>
+          <div class="tile">
+            <div class="tile__ph">Animation clip 03</div>
+            <p class="tile__cap">What it does (transitions, hierarchy).</p>
+          </div>
+          <div class="tile">
+            <div class="tile__ph">Animation clip 04</div>
+            <p class="tile__cap">What it does (micro-interactions).</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8) DESIGN CHOICES -->
+      <section class="slide slide--dark" id="design">
+        <div class="container slideGrid">
+          <div class="slideCopy">
+            <p class="eyebrow">08 — Design choices</p>
             <h2 class="h2">Calm typography, high clarity</h2>
-            <p class="p">
-              Playfair Display for expressive headings, Poppins for clean readability. Spacing stays
-              generous to keep cognitive load low.
+            <p class="p p--muted">
+              Explain the visual direction, why it fits the concept and audience, and how hierarchy stays clean.
             </p>
 
-            <div class="bullets">
-              <div class="bullet">
-                <span class="bullet__dot"></span>
-                <div>
-                  <strong>Hierarchy</strong>
-                  <p>Clear H1/H2 rhythm + short paragraphs.</p>
-                </div>
+            <div class="listStack">
+              <div class="listCard">
+                <strong>Typography</strong>
+                <p class="p p--muted">Playfair Display for headings, Poppins for readability.</p>
               </div>
-              <div class="bullet">
-                <span class="bullet__dot"></span>
-                <div>
-                  <strong>Color</strong>
-                  <p>Primary base + green accents, no harsh contrast.</p>
-                </div>
+              <div class="listCard">
+                <strong>Hierarchy</strong>
+                <p class="p p--muted">Short paragraphs, strong headings, consistent spacing.</p>
               </div>
-              <div class="bullet">
-                <span class="bullet__dot"></span>
-                <div>
-                  <strong>Motion</strong>
-                  <p>Soft, slow micro-interactions. Nothing flashy.</p>
-                </div>
+              <div class="listCard">
+                <strong>Consistency</strong>
+                <p class="p p--muted">Same components, same rhythm, calm contrast.</p>
               </div>
             </div>
           </div>
@@ -324,115 +331,121 @@
               <h3 class="h3">Type system</h3>
               <div class="typeRow">
                 <span class="typeTag">H1</span>
-                <span class="typeVal">Playfair Display 48–64</span>
+                <span class="typeVal">Playfair Display</span>
               </div>
               <div class="typeRow">
                 <span class="typeTag">H2</span>
-                <span class="typeVal">Playfair Display 32–44</span>
+                <span class="typeVal">Playfair Display</span>
               </div>
               <div class="typeRow">
                 <span class="typeTag">Body</span>
-                <span class="typeVal">Poppins Light 14</span>
+                <span class="typeVal">Poppins</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- DEMO -->
-      <section class="slide slide--dark" id="demo">
+      <!-- 9) TECHNICAL CHALLENGES -->
+      <section class="slide slide--green" id="tech">
         <div class="container slideHead">
-          <p class="eyebrow">04 — Demo</p>
-          <h2 class="h2">Walkthrough video</h2>
-          <p class="p p--muted">Replace this with your click-through demo video.</p>
+          <p class="eyebrow">09 — Technical challenges</p>
+          <h2 class="h2">What was hard (and how I fixed it)</h2>
+          <p class="p p--muted">Keep it concrete: problem → solution → result.</p>
         </div>
 
+        <div class="container techGrid">
+          <div class="techCard">
+            <h3 class="h3">Challenge 01</h3>
+            <p class="p p--muted">Describe the issue + how you solved it.</p>
+          </div>
+          <div class="techCard">
+            <h3 class="h3">Challenge 02</h3>
+            <p class="p p--muted">Describe the issue + how you solved it.</p>
+          </div>
+          <div class="techCard">
+            <h3 class="h3">Challenge 03</h3>
+            <p class="p p--muted">Describe the issue + how you solved it.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10) PROCESS & REFLECTION -->
+      <section class="slide slide--dark" id="reflection">
         <div class="container">
-          <div class="videoFrame">
-            <div class="videoPH">
-              <span>Drop demo video here</span>
-              <small>Use MP4 / webm</small>
+          <div class="slideHead">
+            <p class="eyebrow">10 — Process & reflection</p>
+            <h2 class="h2">What I learned</h2>
+            <p class="p p--muted">Design + development learnings. Keep it honest and specific.</p>
+          </div>
+
+          <div class="reflectGrid">
+            <div class="reflectCard">
+              <h3 class="h3">What went well</h3>
+              <p class="p p--muted">Clarity, calm UI, readable hierarchy, component consistency.</p>
+            </div>
+            <div class="reflectCard">
+              <h3 class="h3">What was difficult</h3>
+              <p class="p p--muted">Concrete challenges (time, integration, animations, data layer).</p>
+            </div>
+            <div class="reflectCard">
+              <h3 class="h3">What I learned</h3>
+              <p class="p p--muted">Your biggest insights (design + dev).</p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- ANIMATIONS -->
-      <section class="slide slide--green" id="animations">
-        <div class="container slideHead">
-          <p class="eyebrow">05 — Animations</p>
-          <h2 class="h2">Micro-interactions</h2>
-          <p class="p p--muted">Replace each tile with a small clip (muted, looping works great).</p>
-        </div>
+      <!-- 11) NEXT STEPS -->
+      <section class="slide slide--green" id="next">
+        <div class="container slideGrid">
+          <div class="slideCopy">
+            <p class="eyebrow">11 — Next steps</p>
+            <h2 class="h2">What I would improve next</h2>
+            <p class="p p--muted">Features, polish, scalability.</p>
 
-        <div class="container grid4">
-          <div class="tile">
-            <div class="tile__ph">Animation 01</div>
-            <p class="tile__cap">Toast feedback</p>
+            <div class="listStack">
+              <div class="listCard">
+                <strong>Upgrade 01</strong>
+                <p class="p p--muted">Example: better filters/search in Library.</p>
+              </div>
+              <div class="listCard">
+                <strong>Upgrade 02</strong>
+                <p class="p p--muted">Example: guided onboarding + first tea log.</p>
+              </div>
+              <div class="listCard">
+                <strong>Upgrade 03</strong>
+                <p class="p p--muted">Example: richer tasting profiles / tags.</p>
+              </div>
+            </div>
           </div>
-          <div class="tile">
-            <div class="tile__ph">Animation 02</div>
-            <p class="tile__cap">Card entrance</p>
-          </div>
-          <div class="tile">
-            <div class="tile__ph">Animation 03</div>
-            <p class="tile__cap">Tab transition</p>
-          </div>
-          <div class="tile">
-            <div class="tile__ph">Animation 04</div>
-            <p class="tile__cap">Button press</p>
-          </div>
-        </div>
-      </section>
 
-      <!-- MOCKUPS -->
-      <section class="slide slide--dark" id="mockups">
-        <div class="container slideHead">
-          <p class="eyebrow">06 — Mockups</p>
-          <h2 class="h2">Key screens</h2>
-          <p class="p p--muted">Replace placeholders with your final mockups.</p>
-        </div>
-
-        <div class="container mockRack">
-          <div class="mockCard">Mockup 01</div>
-          <div class="mockCard mockCard--front">Mockup 02</div>
-          <div class="mockCard">Mockup 03</div>
+          <div class="slideMedia">
+            <div class="mediaFrame">
+              <div class="mediaFrame__ph">Optional: roadmap / feature list / future mockups</div>
+              <p class="caption">Next steps visual</p>
+            </div>
+          </div>
         </div>
       </section>
 
-      <!-- REFLECTION -->
-      <section class="slide slide--dark" id="reflection">
-        <div class="container final">
-          <p class="eyebrow">07 — Reflection</p>
-          <h2 class="final__title">Reflection of process & progress</h2>
-          <p class="final__sub">
-            What I learned, what changed during iterations, what I would improve next, and how the
-            project shaped my design decisions.
+      <!-- 12) CLOSING -->
+      <section class="slide slide--dark" id="closing">
+        <div class="container closing">
+          <p class="eyebrow">12 — Closing</p>
+          <h2 class="closing__title">Calm UI. Real ritual.</h2>
+          <p class="closing__sub">
+            Strong end line in your tone. One sentence that proves what this project stands for.
           </p>
 
-          <div class="final__grid">
-            <div class="finalCard">
-              <h3 class="h3">What worked</h3>
-              <p class="p p--muted">Short notes: clarity, calm UI, readable hierarchy.</p>
-            </div>
-            <div class="finalCard">
-              <h3 class="h3">What changed</h3>
-              <p class="p p--muted">Short notes: iterations, feedback, refinements.</p>
-            </div>
-            <div class="finalCard">
-              <h3 class="h3">Next steps</h3>
-              <p class="p p--muted">Short notes: features, polish, usability testing.</p>
-            </div>
-          </div>
-
-          <div class="final__actions">
+          <div class="closing__actions">
             <a class="btn btn--primary btn--lg" href="#top">Back to top</a>
             <a class="btn btn--ghost btn--lg" href="#demo">Rewatch demo</a>
           </div>
         </div>
       </section>
 
-      <!-- FOOTER (OUTSIDE reflection section) -->
+      <!-- FOOTER -->
       <footer class="footer">
         <div class="container footer__inner">
           <div class="footer__left">
@@ -444,9 +457,9 @@
           </div>
 
           <div class="footer__right">
-            <a href="#concept">Concept</a>
-            <a href="#research">Research</a>
+            <a href="#problem">Problem</a>
             <a href="#demo">Demo</a>
+            <a href="#closing">Closing</a>
           </div>
         </div>
 
@@ -456,7 +469,6 @@
       </footer>
     </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="main.js"></script>
   </body>
 </html>
