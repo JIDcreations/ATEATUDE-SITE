@@ -25,14 +25,18 @@
 
   <body>
     <!-- Sticky top nav -->
-    <header class="nav">
+    <header class="nav" id="top">
       <div class="container nav__inner">
         <a class="brand" href="#top" aria-label="Go to top">
-          <img class="brand__logo" src="assets/MounteaLogo.png" alt="ATEATUDE logo" />
+          <img
+            class="brand__logo"
+            src="assets/MounteaLogo.png"
+            alt="ATEATUDE logo"
+          />
           <span class="brand__name">ATEATUDE</span>
         </a>
 
-        <nav class="nav__links">
+        <nav class="nav__links" aria-label="Primary navigation">
           <a href="#concept">Concept</a>
           <a href="#research">Research</a>
           <a href="#design">Design choices</a>
@@ -42,13 +46,15 @@
           <a href="#reflection">Reflection</a>
         </nav>
 
-        <a class="btn btn--primary" href="#demo">Watch demo</a>
+        <div class="nav__cta">
+          <a class="btn btn--primary" href="#demo">Watch demo</a>
+        </div>
       </div>
     </header>
 
-    <main id="top">
-      <!-- HERO (slide 1) -->
-      <section class="slide slide--hero slide--dark" id="hero">
+    <main>
+      <!-- HERO -->
+      <section class="slide slide--hero slide--dark" id="hero" aria-label="Hero">
         <div class="bgOrbs" aria-hidden="true">
           <div class="orb orb--a"></div>
           <div class="orb orb--b"></div>
@@ -62,7 +68,7 @@
           <h1 class="h1">
             ATEATUDE —
             <span class="accent">a calm tea journal</span>
-            that helps you slow down.
+            built for presence.
           </h1>
 
           <p class="lead">
@@ -75,16 +81,16 @@
             <a class="btn btn--ghost btn--lg" href="#research">View research</a>
           </div>
 
-          <div class="hero__meta">
-            <div class="metaCard">
+          <div class="hero__meta" role="list" aria-label="Quick summary">
+            <div class="metaCard" role="listitem">
               <span class="metaCard__k">Focus</span>
               <span class="metaCard__v">Mindful logging</span>
             </div>
-            <div class="metaCard">
+            <div class="metaCard" role="listitem">
               <span class="metaCard__k">Design</span>
               <span class="metaCard__v">Swiss / calm / premium</span>
             </div>
-            <div class="metaCard">
+            <div class="metaCard" role="listitem">
               <span class="metaCard__k">Outcome</span>
               <span class="metaCard__v">Clear, present, personal</span>
             </div>
@@ -96,18 +102,20 @@
         </div>
       </section>
 
-      <!-- CONCEPT (slide 2) -->
-      <section class="slide slide--green" id="concept">
+      <!-- CONCEPT -->
+      <section class="slide slide--green" id="concept" aria-label="Concept section">
         <div class="container slideGrid">
           <div class="slideCopy">
             <p class="eyebrow">01 — Concept</p>
             <h2 class="h2">Tea as a moment, not a habit</h2>
+
+            <!-- Replace text content freely -->
             <p class="p">
               ATEATUDE reframes tea drinking as a ritual. Instead of speed and distraction, the app
               supports presence: what you taste, how you feel, and what you want to remember.
             </p>
 
-            <div class="chips">
+            <div class="chips" aria-label="Concept tags">
               <span class="chip">Ritual-first</span>
               <span class="chip">Taste notes</span>
               <span class="chip">Mood + reflection</span>
@@ -117,21 +125,23 @@
 
           <div class="slideMedia">
             <!-- Replace with your mockup (image/video) -->
-            <div class="frame frame--phone">
-              <div class="frame__inner">
-                <div class="ph ph--dot"></div>
-                <div class="ph ph--line"></div>
-                <div class="ph ph--line ph--line2"></div>
-                <div class="ph ph--btn"></div>
+            <figure class="mediaBlock">
+              <div class="frame frame--phone">
+                <div class="frame__inner">
+                  <div class="ph ph--dot"></div>
+                  <div class="ph ph--line"></div>
+                  <div class="ph ph--line ph--line2"></div>
+                  <div class="ph ph--btn"></div>
+                </div>
               </div>
-            </div>
-            <p class="caption">Replace with your Concept mockup</p>
+              <figcaption class="caption">Replace with your Concept mockup</figcaption>
+            </figure>
           </div>
         </div>
       </section>
 
-      <!-- RESEARCH (slide 3) -->
-      <section class="slide slide--dark" id="research">
+      <!-- RESEARCH -->
+      <section class="slide slide--dark" id="research" aria-label="Research section">
         <div class="container slideHead">
           <p class="eyebrow">02 — Research</p>
           <h2 class="h2">Screenshots & findings</h2>
@@ -141,39 +151,41 @@
         </div>
 
         <div class="container">
-          <div class="swiper researchSwiper">
+          <div class="swiper researchSwiper" aria-label="Research slider">
             <div class="swiper-wrapper">
-              <!-- Replace each slide content with <img src="assets/research/01.png" /> etc. -->
+              <!-- Replace with images:
+                   <img class="shot__img" src="assets/research/01.png" alt="..." />
+              -->
               <div class="swiper-slide">
-                <div class="shot">
+                <figure class="shot">
                   <div class="shot__ph">Research screenshot 01</div>
-                  <p class="shot__cap">Insight headline / short takeaway</p>
-                </div>
+                  <figcaption class="shot__cap">Insight headline / short takeaway</figcaption>
+                </figure>
               </div>
 
               <div class="swiper-slide">
-                <div class="shot">
+                <figure class="shot">
                   <div class="shot__ph">Research screenshot 02</div>
-                  <p class="shot__cap">Insight headline / short takeaway</p>
-                </div>
+                  <figcaption class="shot__cap">Insight headline / short takeaway</figcaption>
+                </figure>
               </div>
 
               <div class="swiper-slide">
-                <div class="shot">
+                <figure class="shot">
                   <div class="shot__ph">Research screenshot 03</div>
-                  <p class="shot__cap">Insight headline / short takeaway</p>
-                </div>
+                  <figcaption class="shot__cap">Insight headline / short takeaway</figcaption>
+                </figure>
               </div>
 
               <div class="swiper-slide">
-                <div class="shot">
+                <figure class="shot">
                   <div class="shot__ph">Research screenshot 04</div>
-                  <p class="shot__cap">Insight headline / short takeaway</p>
-                </div>
+                  <figcaption class="shot__cap">Insight headline / short takeaway</figcaption>
+                </figure>
               </div>
             </div>
 
-            <div class="swiper-controls">
+            <div class="swiper-controls" aria-hidden="true">
               <div class="swiper-button-prev"></div>
               <div class="swiper-pagination"></div>
               <div class="swiper-button-next"></div>
@@ -182,18 +194,20 @@
         </div>
       </section>
 
-      <!-- DESIGN CHOICES (slide 4) -->
-      <section class="slide slide--green" id="design">
+      <!-- DESIGN CHOICES -->
+      <section class="slide slide--green" id="design" aria-label="Design choices section">
         <div class="container slideGrid">
           <div class="slideCopy">
             <p class="eyebrow">03 — Design choices</p>
             <h2 class="h2">Calm typography, high clarity</h2>
+
+            <!-- Replace text content freely -->
             <p class="p">
               Playfair Display for expressive headings, Poppins for clean readability. Spacing stays
               generous to keep cognitive load low.
             </p>
 
-            <div class="bullets">
+            <div class="bullets" aria-label="Design choices bullets">
               <div class="bullet">
                 <span class="bullet__dot"></span>
                 <div>
@@ -201,6 +215,7 @@
                   <p>Clear H1/H2 rhythm + short paragraphs.</p>
                 </div>
               </div>
+
               <div class="bullet">
                 <span class="bullet__dot"></span>
                 <div>
@@ -208,6 +223,7 @@
                   <p>Primary base + green accents, no harsh contrast.</p>
                 </div>
               </div>
+
               <div class="bullet">
                 <span class="bullet__dot"></span>
                 <div>
@@ -219,14 +235,14 @@
           </div>
 
           <div class="slideMedia">
-            <div class="palette">
+            <div class="palette" aria-label="Color palette">
               <div class="sw sw--primary"><span>#243235</span></div>
               <div class="sw sw--secondary"><span>#4A8A77</span></div>
               <div class="sw sw--soft"><span>#7D9B93</span></div>
               <div class="sw sw--mint"><span>#D6F4CD</span></div>
             </div>
 
-            <div class="typeCard">
+            <div class="typeCard" aria-label="Type system">
               <h3 class="h3">Type system</h3>
               <div class="typeRow">
                 <span class="typeTag">H1</span>
@@ -245,8 +261,8 @@
         </div>
       </section>
 
-      <!-- DEMO (slide 5) -->
-      <section class="slide slide--dark" id="demo">
+      <!-- DEMO -->
+      <section class="slide slide--dark" id="demo" aria-label="Demo section">
         <div class="container slideHead">
           <p class="eyebrow">04 — Demo</p>
           <h2 class="h2">Walkthrough video</h2>
@@ -255,18 +271,19 @@
 
         <div class="container">
           <div class="videoFrame">
-            <!-- Replace with your video -->
-            <!-- <video src="assets/demo.mp4" controls playsinline></video> -->
+            <!-- Replace with:
+                 <video class="video" src="assets/demo.mp4" controls playsinline></video>
+            -->
             <div class="videoPH">
               <span>Drop demo video here</span>
-              <small>Use MP4 / webm</small>
+              <small>Use MP4 / WebM</small>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- ANIMATIONS (slide 6) -->
-      <section class="slide slide--green" id="animations">
+      <!-- ANIMATIONS -->
+      <section class="slide slide--green" id="animations" aria-label="Animations section">
         <div class="container slideHead">
           <p class="eyebrow">05 — Animations</p>
           <h2 class="h2">Micro-interactions</h2>
@@ -276,6 +293,7 @@
         </div>
 
         <div class="container grid4">
+          <!-- Replace each .tile__ph with a <video> or <img> -->
           <div class="tile">
             <div class="tile__ph">Animation 01</div>
             <p class="tile__cap">Toast feedback</p>
@@ -295,32 +313,35 @@
         </div>
       </section>
 
-      <!-- MOCKUPS (slide 7) -->
-      <section class="slide slide--dark" id="mockups">
+      <!-- MOCKUPS -->
+      <section class="slide slide--dark" id="mockups" aria-label="Mockups section">
         <div class="container slideHead">
           <p class="eyebrow">06 — Mockups</p>
           <h2 class="h2">Key screens</h2>
           <p class="p p--muted">Replace placeholders with your final mockups.</p>
         </div>
 
-        <div class="container mockRack">
+        <div class="container mockRack" aria-label="Mockups rack">
+          <!-- Replace each card with an <img> -->
           <div class="mockCard">Mockup 01</div>
           <div class="mockCard mockCard--front">Mockup 02</div>
           <div class="mockCard">Mockup 03</div>
         </div>
       </section>
 
-      <!-- REFLECTION (slide 8) -->
-      <section class="slide slide--dark" id="reflection">
+      <!-- REFLECTION -->
+      <section class="slide slide--dark" id="reflection" aria-label="Reflection section">
         <div class="container final">
           <p class="eyebrow">07 — Reflection</p>
           <h2 class="final__title">Reflection of process & progress</h2>
+
+          <!-- Replace text content freely -->
           <p class="final__sub">
             What I learned, what changed during iterations, what I would improve next, and how the
             project shaped my design decisions.
           </p>
 
-          <div class="final__grid">
+          <div class="final__grid" aria-label="Reflection cards">
             <div class="finalCard">
               <h3 class="h3">What worked</h3>
               <p class="p p--muted">Short notes: clarity, calm UI, readable hierarchy.</p>
@@ -340,55 +361,34 @@
             <a class="btn btn--ghost btn--lg" href="#demo">Rewatch demo</a>
           </div>
         </div>
-
-        <footer class="footer">
-          <div class="container footer__inner">
-            <div class="footer__left">
-              <img class="footer__logo" src="assets/MounteaLogo.png" alt="ATEATUDE logo" />
-              <div>
-                <div class="footer__brand">ATEATUDE</div>
-                <div class="footer__muted">A mindful way to experience tea</div>
-              </div>
-            </div>
-
-            <div class="footer__right">
-              <a href="#concept">Concept</a>
-              <a href="#research">Research</a>
-              <a href="#demo">Demo</a>
-            </div>
-          </div>
-
-          <div class="container footer__bottom">
-            <span class="footer__muted">© <span id="y"></span> ATEATUDE</span>
-          </div>
-        </footer>
       </section>
     </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script>
-      document.getElementById('y').textContent = new Date().getFullYear();
+    <!-- FOOTER (outside sections, fixes layout bugs) -->
+    <footer class="footer" aria-label="Footer">
+      <div class="container footer__inner">
+        <div class="footer__left">
+          <img class="footer__logo" src="assets/MounteaLogo.png" alt="ATEATUDE logo" />
+          <div>
+            <div class="footer__brand">ATEATUDE</div>
+            <div class="footer__muted">A mindful way to experience tea</div>
+          </div>
+        </div>
 
-      new Swiper('.researchSwiper', {
-        slidesPerView: 1.1,
-        spaceBetween: 14,
-        centeredSlides: false,
-        grabCursor: true,
-        speed: 650,
-        pagination: {
-          el: '.researchSwiper .swiper-pagination',
-          clickable: true,
-        },
-        navigation: {
-          nextEl: '.researchSwiper .swiper-button-next',
-          prevEl: '.researchSwiper .swiper-button-prev',
-        },
-        breakpoints: {
-          560: { slidesPerView: 1.6, spaceBetween: 16 },
-          900: { slidesPerView: 2.2, spaceBetween: 18 },
-          1200: { slidesPerView: 2.6, spaceBetween: 20 },
-        },
-      });
-    </script>
+        <nav class="footer__right" aria-label="Footer navigation">
+          <a href="#concept">Concept</a>
+          <a href="#research">Research</a>
+          <a href="#demo">Demo</a>
+        </nav>
+      </div>
+
+      <div class="container footer__bottom">
+        <span class="footer__muted">© <span id="y"></span> ATEATUDE</span>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="main.js" defer></script>
   </body>
 </html>
