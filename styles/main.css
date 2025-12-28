@@ -762,23 +762,36 @@ button:focus-visible{
 }
 
 /* =========================
-   ANIMATIONS — BIGGER 4 SCREENS
+   ANIMATIONS — BIGGER 4 SCREENS (RIGHT COLUMN)
    ========================= */
 
+/* make sure the media column can actually grow */
+:root{
+  --container: 1680px;
+}
+
+/* give more width to the MEDIA side so each of the 4 tiles becomes larger */
+.slideGrid{
+  grid-template-columns: .60fr 1.40fr;
+}
+
+/* keep copy from stealing space */
+.slideCopy{
+  max-width: 60ch;
+}
+
+/* 4-up grid */
 .grid2{
   display:grid;
   grid-template-columns: repeat(4, minmax(0,1fr));
-  gap:24px;
+  gap:28px;
   width:100%;
-
-  /* ✅ MUST be able to expand inside the wider media column */
-  max-width: 100%;
-
-  margin-top:22px;
+  max-width:100%;
+  margin-top:26px;
   align-items:start;
 }
 
-/* large device cards */
+/* tile card */
 .tile{
   border-radius:22px;
   background: rgba(36,50,53,0.14);
@@ -789,15 +802,10 @@ button:focus-visible{
   flex-direction:column;
 }
 
-/* IMPORTANT:
-   Your real videos/images are NOT inside .tile__ph in most cases.
-   Their size is driven by width + aspect-ratio on the media itself.
-   So the only way to make them bigger is: give the media column more width
-   (done via --container + slideGrid columns) and let the tiles fill it. */
-
+/* placeholder (if used) */
 .tile__ph{
   aspect-ratio: 9 / 16;
-  height: clamp(420px, 48vh, 620px);
+  height: clamp(520px, 58vh, 760px);
   padding:16px;
 
   display:grid;
@@ -811,26 +819,45 @@ button:focus-visible{
     rgba(253,251,252,0.08);
 }
 
-/* FULL content visible */
+/* REAL assets: full visible, no crop */
 .tile video,
 .tile .tileImg{
   width:100%;
-
-  /* ✅ this is what sets the visual size */
   aspect-ratio: 9 / 16;
-
   height:auto;
   display:block;
   object-fit: contain;
   background: rgba(0,0,0,0.28);
 }
 
+/* caption */
 .tile__cap{
   padding:12px 14px;
   font-size:12px;
   opacity:.65;
   font-weight:300;
 }
+
+/* responsive */
+@media (max-width: 1400px){
+  :root{ --container: 1400px; }
+  .slideGrid{ grid-template-columns: .75fr 1.25fr; }
+  .grid2{ gap:22px; }
+  .tile__ph{ height: clamp(420px, 54vh, 640px); }
+}
+
+@media (max-width: 1100px){
+  :root{ --container: 1120px; }
+  .slideGrid{ grid-template-columns: 1fr; }
+  .grid2{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .tile__ph{ height: clamp(380px, 56vh, 620px); }
+}
+
+@media (max-width: 520px){
+  .grid2{ grid-template-columns: 1fr; }
+  .tile__ph{ height: clamp(320px, 58vh, 560px); }
+}
+
 
 /* DESIGN PALETTE */
 .palette{
