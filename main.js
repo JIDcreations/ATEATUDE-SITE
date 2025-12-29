@@ -3,7 +3,44 @@ document.addEventListener("DOMContentLoaded", () => {
   const y = document.getElementById("y");
   if (y) y.textContent = new Date().getFullYear();
 
-  // Desktop dropdowns
+    /* =========================
+     NAV — show on ANY scroll up
+     ========================= */
+
+  const nav = document.querySelector(".nav");
+  let lastY = window.scrollY;
+
+  function updateNavOnScroll() {
+    if (!nav) return;
+
+    const currentY = window.scrollY;
+
+    // always show at the very top
+    if (currentY <= 0) {
+      nav.classList.remove("is-hidden");
+      lastY = currentY;
+      return;
+    }
+
+    if (currentY < lastY) {
+      // scrolling up (even 1px)
+      nav.classList.remove("is-hidden");
+    } else if (currentY > lastY) {
+      // scrolling down
+      nav.classList.add("is-hidden");
+    }
+
+    // always keep lastY updated
+    lastY = currentY;
+  }
+
+  window.addEventListener("scroll", updateNavOnScroll, { passive: true });
+
+
+  /* =========================
+     Desktop dropdowns
+     ========================= */
+
   const dds = Array.from(document.querySelectorAll(".dd"));
 
   function closeAllDropdowns() {
@@ -29,14 +66,17 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     dd.querySelectorAll("a").forEach((a) => {
-      a.addEventListener("click", () => closeAllDropdowns());
+      a.addEventListener("click", closeAllDropdowns);
     });
   });
 
   document.addEventListener("click", closeAllDropdowns);
   window.addEventListener("scroll", closeAllDropdowns, { passive: true });
 
-  // Mobile menu
+  /* =========================
+     Mobile menu
+     ========================= */
+
   const burger = document.querySelector(".nav__burger");
   const panel = document.getElementById("navPanel");
 
@@ -69,14 +109,20 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Video autoplay fallback (animations + demo)
+  /* =========================
+     Video autoplay fallback
+     ========================= */
+
   document.querySelectorAll(".tileVideo, .demoVideo").forEach((v) => {
     const tryPlay = () => v.play().catch(() => {});
     v.addEventListener("loadeddata", tryPlay, { once: true });
     tryPlay();
   });
 
-  // ✅ Mockup gallery swiper (free scroll / swipe)
+  /* =========================
+     Mockup gallery swiper
+     ========================= */
+
   const galleryEl = document.querySelector(".gallerySwiper");
   if (galleryEl && window.Swiper) {
     new Swiper(galleryEl, {
