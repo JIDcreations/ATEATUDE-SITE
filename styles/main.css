@@ -13,8 +13,8 @@
   --shadow: 0 24px 70px rgba(0,0,0,0.22);
   --shadow2: 0 16px 44px rgba(0,0,0,0.16);
 
-  /* ✅ BIGGER overall width so the 4 screens can actually grow */
-  --container: 1400px;
+  /* overall site width */
+  --container: 1680px;
 
   --slide-min: 92vh;
 
@@ -61,20 +61,17 @@ button:focus-visible{
    SUBTLE GLOBAL ANIMATIONS
    ========================= */
 
-/* reveal on load */
 @keyframes fadeUp{
   from{ opacity:0; transform: translateY(10px); }
   to{ opacity:1; transform: translateY(0); }
 }
 
-/* subtle floating highlight */
 @keyframes floatSlow{
   0%{ transform: translateY(0); }
   50%{ transform: translateY(-6px); }
   100%{ transform: translateY(0); }
 }
 
-/* apply a gentle entrance to common blocks */
 .hero,
 .slideHead,
 .slideCopy,
@@ -82,11 +79,9 @@ button:focus-visible{
   animation: fadeUp var(--dur) var(--ease) both;
 }
 
-/* stagger a bit so it feels premium (no JS needed) */
 .slideCopy{ animation-delay: 80ms; }
 .slideMedia{ animation-delay: 140ms; }
 
-/* reduce motion for accessibility */
 @media (prefers-reduced-motion: reduce){
   *{ animation: none !important; transition: none !important; scroll-behavior:auto !important; }
 }
@@ -191,7 +186,6 @@ button:focus-visible{
   border:1px solid rgba(253,251,252,0.12);
   box-shadow: 0 20px 60px rgba(0,0,0,0.35);
 
-  /* animated open */
   display:none;
   opacity:0;
   transform: translateY(-6px);
@@ -257,7 +251,6 @@ button:focus-visible{
   z-index:55;
   overflow:auto;
 
-  /* subtle appear */
   opacity:0;
   transform: translateY(-8px);
   transition: opacity 220ms var(--ease), transform 220ms var(--ease);
@@ -346,7 +339,6 @@ button:focus-visible{
   overflow:hidden;
 }
 
-/* subtle ambient blob motion in backgrounds (very soft) */
 .slide::before{
   content:"";
   position:absolute;
@@ -382,7 +374,6 @@ button:focus-visible{
   padding-block: clamp(110px, 16vh, 170px);
 }
 
-/* layout variant: stacked slide */
 .slide--stacked{
   padding-block: clamp(86px, 10vh, 120px);
 }
@@ -512,8 +503,6 @@ button:focus-visible{
 }
 .p--muted{ opacity:.78; }
 
-.caption{ margin:0; font-size:12px; font-weight:300; opacity:.78; }
-
 /* SECTION HEAD */
 .slideHead{
   max-width: 76ch;
@@ -527,10 +516,7 @@ button:focus-visible{
 /* LAYOUT */
 .slideGrid{
   display:grid;
-
-  /* ✅ more space for the media column across the site */
-  grid-template-columns: .85fr 1.15fr;
-
+  grid-template-columns: .60fr 1.40fr;
   gap: clamp(22px, 3vw, 44px);
   align-items:start;
   width:100%;
@@ -539,12 +525,12 @@ button:focus-visible{
 .slideGrid--reverse > .slideCopy{ order:2; }
 .slideGrid--reverse > .slideMedia{ order:1; }
 
-.slideCopy{ max-width:72ch; }
+.slideCopy{ max-width:60ch; }
 .slideMedia{
   display:grid;
   justify-items:stretch;
   gap:12px;
-  min-width: 0; /* ✅ prevents overflow out of container */
+  min-width: 0;
 }
 
 /* CARDS */
@@ -617,7 +603,6 @@ button:focus-visible{
 .ul li{ margin: 6px 0; }
 .ul--compact li{ margin: 4px 0; }
 
-/* Reflection list */
 .list{
   margin: 10px 0 0;
   padding-left: 18px;
@@ -651,10 +636,7 @@ button:focus-visible{
   border-color: rgba(253,251,252,0.26);
 }
 
-/* =========================
-   MEDIA FRAME (images inside container)
-   ========================= */
-
+/* MEDIA FRAME */
 .mediaFrame{
   width:100%;
   max-width:100%;
@@ -666,7 +648,7 @@ button:focus-visible{
   display:grid;
   grid-template-rows: 1fr auto;
   min-height: 420px;
-  min-width: 0; /* ✅ prevents grid overflow */
+  min-width: 0;
   transform: translateZ(0);
   transition: transform 240ms var(--ease), box-shadow 240ms var(--ease), border-color 240ms var(--ease);
 }
@@ -675,24 +657,8 @@ button:focus-visible{
   box-shadow: 0 28px 80px rgba(0,0,0,0.24);
   border-color: rgba(253,251,252,0.16);
 }
-
-/* if you use .mediaFrame--tall */
 .mediaFrame--tall{ min-height: 560px; }
 
-/* placeholder area */
-.mediaFrame__ph{
-  display:grid;
-  place-items:center;
-  text-align:center;
-  padding:24px;
-  opacity:.82;
-  background:
-    radial-gradient(700px 260px at 20% 0%, rgba(214,244,205,0.10), transparent 62%),
-    radial-gradient(700px 260px at 90% 70%, rgba(74,138,119,0.12), transparent 60%),
-    rgba(36,50,53,0.10);
-}
-
-/* ✅ for real images/videos inside mediaFrame */
 .mediaFrame img,
 .mediaFrame video{
   width:100%;
@@ -734,10 +700,7 @@ button:focus-visible{
 }
 .step__body strong{ display:block; font-size:13px; margin-bottom:6px; }
 
-/* =========================
-   DEMO — iPhone video
-   ========================= */
-
+/* DEMO — iPhone video */
 .videoFrame{
   border-radius: var(--r-lg);
   background: rgba(253,251,252,0.06);
@@ -745,14 +708,12 @@ button:focus-visible{
   box-shadow: var(--shadow);
   overflow:hidden;
 
-  /* iPhone portrait ratio */
   width: min(360px, 100%);
   aspect-ratio: 9 / 16;
 
   margin-inline:auto;
 }
 
-/* show full video — no crop */
 .mediaVideo{
   width:100%;
   height:100%;
@@ -761,26 +722,7 @@ button:focus-visible{
   background: rgba(0,0,0,0.25);
 }
 
-/* =========================
-   ANIMATIONS — BIGGER 4 SCREENS (RIGHT COLUMN)
-   ========================= */
-
-/* make sure the media column can actually grow */
-:root{
-  --container: 1680px;
-}
-
-/* give more width to the MEDIA side so each of the 4 tiles becomes larger */
-.slideGrid{
-  grid-template-columns: .60fr 1.40fr;
-}
-
-/* keep copy from stealing space */
-.slideCopy{
-  max-width: 60ch;
-}
-
-/* 4-up grid */
+/* ANIMATIONS section grid */
 .grid2{
   display:grid;
   grid-template-columns: repeat(4, minmax(0,1fr));
@@ -791,7 +733,6 @@ button:focus-visible{
   align-items:start;
 }
 
-/* tile card */
 .tile{
   border-radius:22px;
   background: rgba(36,50,53,0.14);
@@ -802,24 +743,6 @@ button:focus-visible{
   flex-direction:column;
 }
 
-/* placeholder (if used) */
-.tile__ph{
-  aspect-ratio: 9 / 16;
-  height: clamp(520px, 58vh, 760px);
-  padding:16px;
-
-  display:grid;
-  place-items:center;
-  font-weight:600;
-  opacity:.95;
-
-  background:
-    radial-gradient(820px 360px at 20% 0%, rgba(214,244,205,0.10), transparent 62%),
-    radial-gradient(820px 360px at 90% 60%, rgba(74,138,119,0.12), transparent 60%),
-    rgba(253,251,252,0.08);
-}
-
-/* REAL assets: full visible, no crop */
 .tile video,
 .tile .tileImg{
   width:100%;
@@ -829,35 +752,6 @@ button:focus-visible{
   object-fit: contain;
   background: rgba(0,0,0,0.28);
 }
-
-/* caption */
-.tile__cap{
-  padding:12px 14px;
-  font-size:12px;
-  opacity:.65;
-  font-weight:300;
-}
-
-/* responsive */
-@media (max-width: 1400px){
-  :root{ --container: 1400px; }
-  .slideGrid{ grid-template-columns: .75fr 1.25fr; }
-  .grid2{ gap:22px; }
-  .tile__ph{ height: clamp(420px, 54vh, 640px); }
-}
-
-@media (max-width: 1100px){
-  :root{ --container: 1120px; }
-  .slideGrid{ grid-template-columns: 1fr; }
-  .grid2{ grid-template-columns: repeat(2, minmax(0,1fr)); }
-  .tile__ph{ height: clamp(380px, 56vh, 620px); }
-}
-
-@media (max-width: 520px){
-  .grid2{ grid-template-columns: 1fr; }
-  .tile__ph{ height: clamp(320px, 58vh, 560px); }
-}
-
 
 /* DESIGN PALETTE */
 .palette{
@@ -994,6 +888,75 @@ button:focus-visible{
   flex-wrap:wrap;
 }
 
+/* =========================
+   ✅ MOCKUP GALLERY — PROPORTIONAL CONTAINERS
+   (container adapts to image ratio)
+   ========================= */
+
+.slide--gallery .container{
+  max-width: 1880px;
+}
+
+.gallerySwiper{
+  width:100%;
+  overflow: visible;
+}
+
+.gallerySwiper .swiper-slide{
+  /* slide width controls how big each mockup appears */
+  width: clamp(520px, 62vw, 1180px);
+
+  /* ✅ IMPORTANT: no forced height / no forced ratio */
+  height: auto;
+  aspect-ratio: auto;
+
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid rgba(253,251,252,0.12);
+  background: rgba(253,251,252,0.06);
+  box-shadow: var(--shadow2);
+
+  /* center image */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  /* small inner padding looks more premium */
+  padding: 10px;
+
+  transition: transform 220ms var(--ease), border-color 220ms var(--ease);
+}
+
+.gallerySwiper .swiper-slide:hover{
+  transform: translateY(-2px);
+  border-color: rgba(253,251,252,0.18);
+}
+
+/* ✅ image keeps its own proportions */
+.gallerySwiper img{
+  width: 100%;
+  height: auto;          /* ✅ this is the key */
+  display:block;
+  object-fit: contain;   /* harmless here, but fine */
+  border-radius: 16px;   /* keep rounded corners inside padding */
+  background: rgba(0,0,0,0.18);
+}
+
+/* optional: prevent very tall images from becoming huge */
+.gallerySwiper img{
+  max-height: 72vh;
+}
+
+@media (max-width: 980px){
+  .slide--gallery .container{ max-width: 1120px; }
+  .gallerySwiper .swiper-slide{ width: 86vw; }
+}
+
+@media (max-width: 520px){
+  .gallerySwiper .swiper-slide{ width: 92vw; padding: 8px; }
+  .gallerySwiper img{ max-height: 64vh; }
+}
+
 /* FOOTER */
 .footer{
   width:100%;
@@ -1065,6 +1028,18 @@ button:focus-visible{
 .footer__bottom{ margin-top:16px; text-align:center; }
 
 /* RESPONSIVE */
+@media (max-width: 1400px){
+  :root{ --container: 1400px; }
+  .slideGrid{ grid-template-columns: .75fr 1.25fr; }
+  .grid2{ gap:22px; }
+}
+
+@media (max-width: 1100px){
+  :root{ --container: 1120px; }
+  .slideGrid{ grid-template-columns: 1fr; }
+  .grid2{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+
 @media (max-width: 980px){
   .nav__inner{ grid-template-columns: 1fr auto auto; }
   .nav__links{ display:none; }
@@ -1075,10 +1050,8 @@ button:focus-visible{
   .slideGrid--reverse > .slideMedia{ order:2; }
 
   .hero__meta{ grid-template-columns: 1fr; }
-
   .infoGrid{ grid-template-columns: 1fr; }
 
-  /* ✅ keep animations readable on tablet: 2 columns (NOT 1) */
   .grid2{ grid-template-columns: repeat(2, minmax(0,1fr)); }
 
   .techGrid{ grid-template-columns: 1fr; }
@@ -1093,7 +1066,11 @@ button:focus-visible{
 
 @media (max-width: 520px){
   .btn--lg{ width:100%; }
-
-  /* optional: 1 column on very small phones */
   .grid2{ grid-template-columns: 1fr; }
+
+  /* make gallery slides fit nicely on small phones */
+  .gallerySwiper .swiper-slide{
+    width: 88vw;
+    height: 220px;
+  }
 }

@@ -69,10 +69,26 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Video autoplay fallback (animations + demo if you reuse class)
+  // Video autoplay fallback (animations + demo)
   document.querySelectorAll(".tileVideo, .demoVideo").forEach((v) => {
     const tryPlay = () => v.play().catch(() => {});
     v.addEventListener("loadeddata", tryPlay, { once: true });
     tryPlay();
   });
+
+  // ✅ Mockup gallery swiper (free scroll / swipe)
+  const galleryEl = document.querySelector(".gallerySwiper");
+  if (galleryEl && window.Swiper) {
+    new Swiper(galleryEl, {
+      slidesPerView: "auto",
+      spaceBetween: 16,
+      freeMode: true,
+      grabCursor: true,
+      momentum: true,
+      breakpoints: {
+        980: { spaceBetween: 18 },
+        1400: { spaceBetween: 22 },
+      },
+    });
+  }
 });

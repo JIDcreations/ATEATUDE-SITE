@@ -13,6 +13,12 @@
       rel="stylesheet"
     />
 
+    <!-- Swiper (for clean mockup gallery) -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+
     <link rel="stylesheet" href="styles/main.css" />
   </head>
 
@@ -172,7 +178,7 @@
               <div class="infoCard">
                 <strong>Why now</strong>
                 <p class="p p--muted">
-                  We live in a fast, always-on world, while the need for slow, calm rituals keeps growing.
+                  We live in a fast world, while the need for slow, calm rituals keeps growing.
                 </p>
               </div>
             </div>
@@ -223,7 +229,6 @@
           <div class="slideMedia">
             <div class="mediaFrame mediaFrame--tall">
               <img class="mediaImg" src="assets/TEA5.png" alt="Concept mockup placeholder" />
-        
             </div>
           </div>
         </div>
@@ -272,7 +277,6 @@
           <div class="slideMedia">
             <div class="mediaFrame">
               <img class="mediaImg" src="assets/Detail-Gember.png" alt="Research snapshot placeholder" />
-            
             </div>
           </div>
         </div>
@@ -337,7 +341,7 @@
         </div>
       </section>
 
-      <!-- 6) DEMO (variant: centered head + full width video) -->
+      <!-- 6) DEMO -->
       <section class="slide slide--dark slide--stacked" id="demo">
         <div class="container slideHead slideHead--center">
           <p class="eyebrow">06 — Demo</p>
@@ -347,77 +351,77 @@
 
         <div class="container">
           <div class="videoFrame">
-  <video
-    class="mediaVideo"
-    src="assets/DEMO-ATEATUDE.mp4"
-    controls
-    preload="metadata"
-    playsinline
-  >
-    Your browser does not support the video tag.
-  </video>
-</div>
+            <video
+              class="mediaVideo demoVideo"
+              src="assets/DEMO-ATEATUDE.mp4"
+              controls
+              preload="metadata"
+              playsinline
+            >
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
       </section>
 
-   <!-- 7) ANIMATIONS -->
-<section class="slide slide--green" id="animations">
-  <div class="container slideHead">
-    <p class="eyebrow">07 — Animations & interactions</p>
-    <h2 class="h2">Functional motion</h2>
-    <p class="p p--muted">Subtle animations that support calm interaction</p>
-  </div>
+      <!-- 7) ANIMATIONS -->
+      <section class="slide slide--green" id="animations">
+        <div class="container slideHead">
+          <p class="eyebrow">07 — Animations & interactions</p>
+          <h2 class="h2">Functional motion</h2>
+          <p class="p p--muted">Subtle animations that support calm interaction</p>
+        </div>
 
-  <div class="container grid2">
-    <div class="tile tile--anim">
-      <video
-        class="tileVideo"
-        src="assets/ANI-1.mp4"
-        muted
-        autoplay
-        loop
-        playsinline
-        preload="metadata"
-      ></video>
-    </div>
+        <div class="container grid2">
+          <div class="tile tile--anim">
+            <video
+              class="tileVideo"
+              src="assets/ANI-1.mp4"
+              muted
+              autoplay
+              loop
+              playsinline
+              preload="metadata"
+            ></video>
+          </div>
 
-    <div class="tile tile--anim">
-      <video
-        class="tileVideo"
-        src="assets/ANI-2.mp4"
-        muted
-        autoplay
-        loop
-        playsinline
-        preload="metadata"
-      ></video>
-    </div>
+          <div class="tile tile--anim">
+            <video
+              class="tileVideo"
+              src="assets/ANI-2.mp4"
+              muted
+              autoplay
+              loop
+              playsinline
+              preload="metadata"
+            ></video>
+          </div>
 
-    <div class="tile tile--anim">
-      <video
-        class="tileVideo"
-        src="assets/ANI-3.mp4"
-        muted
-        autoplay
-        loop
-        playsinline
-        preload="metadata"
-      ></video>
-    </div>
+          <div class="tile tile--anim">
+            <video
+              class="tileVideo"
+              src="assets/ANI-3.mp4"
+              muted
+              autoplay
+              loop
+              playsinline
+              preload="metadata"
+            ></video>
+          </div>
 
-    <div class="tile tile--anim">
-      <video
-        class="tileVideo"
-        src="assets/ANI_4.mp4"
-        muted
-        autoplay
-        loop
-        playsinline
-        preload="metadata"
-      ></video>
-    </div>
-  </div>
-</section>
-
+          <div class="tile tile--anim">
+            <video
+              class="tileVideo"
+              src="assets/ANI_4.mp4"
+              muted
+              autoplay
+              loop
+              playsinline
+              preload="metadata"
+            ></video>
+          </div>
+        </div>
+      </section>
 
       <!-- 8) DESIGN CHOICES -->
       <section class="slide slide--dark" id="design">
@@ -546,7 +550,7 @@
         </div>
       </section>
 
-      <!-- 11) NEXT STEPS (variant: reverse + tighter cards) -->
+      <!-- 11) NEXT STEPS -->
       <section class="slide slide--green" id="next">
         <div class="container slideGrid slideGrid--reverse">
           <div class="slideCopy">
@@ -594,6 +598,27 @@
         </div>
       </section>
 
+      <!-- ✅ MOCKUP GALLERY (lots of horizontal images, no text) -->
+      <section class="slide slide--dark slide--gallery" id="mockups"></section>
+        <div class="container">
+          <div class="swiper gallerySwiper" aria-label="Mockup gallery">
+            <div class="swiper-wrapper">
+              <!-- Replace these paths with your own images (horizontal recommended) -->
+              <div class="swiper-slide"><img src="assets/Post-2.png" alt="" loading="lazy" /></div>
+              <div class="swiper-slide"><img src="assets/TEA2.PNG" alt="" loading="lazy" /></div>
+              <div class="swiper-slide"><img src="assets/TEA3.PNG" alt="" loading="lazy" /></div>
+              <div class="swiper-slide"><img src="assets/TEA4.PNG" alt="" loading="lazy" /></div>
+              <div class="swiper-slide"><img src="assets/TEA5.PNG" alt="" loading="lazy" /></div>
+              <div class="swiper-slide"><img src="assets/TEA6.PNG" alt="" loading="lazy" /></div>
+              <div class="swiper-slide"><img src="assets/TEA7.png" alt="" loading="lazy" /></div>
+              <div class="swiper-slide"><img src="assets/TEA8.png" alt="" loading="lazy" /></div>
+              <div class="swiper-slide"><img src="assets/HOME-2.png" alt="" loading="lazy" /></div>
+              <div class="swiper-slide"><img src="assets/Profile-Settings.png" alt="" loading="lazy" /></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- FOOTER -->
       <footer class="footer">
         <div class="container footer__inner">
@@ -618,6 +643,8 @@
       </footer>
     </main>
 
+    <!-- Swiper JS (must be before main.js) -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="main.js"></script>
   </body>
 </html>
