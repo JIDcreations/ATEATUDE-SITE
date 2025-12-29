@@ -109,6 +109,7 @@ button:focus-visible{
   align-items:center;
   gap:12px;
   min-width: 0;
+  padding-left: 40px;
 }
 
 .brand__logo{
