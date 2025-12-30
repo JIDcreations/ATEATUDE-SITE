@@ -26,15 +26,13 @@
   /* subtle motion */
   --ease: cubic-bezier(.2,.8,.2,1);
   --dur: 650ms;
-
-  /* Parallax glow vars (driven by JS) */
-  --mx: .5;     /* 0..1 */
-  --my: .5;     /* 0..1 */
-  --sy: 0;      /* px-ish */
 }
 
 *{ box-sizing:border-box; }
 html,body{ height:100%; }
+
+/* smooth anchors */
+html{ scroll-behavior:smooth; }
 
 body{
   margin:0;
@@ -63,62 +61,51 @@ button:focus-visible{
 }
 
 /* =========================
-   ✅ CUSTOM CIRCLE CURSOR
-   (you already have the divs in HTML)
+   CUSTOM CURSOR (dot + ring)
    ========================= */
-@media (hover: hover) and (pointer: fine){
-  body,
-  a, button, input, textarea, select,
-  .btn, .dd__btn, .nav__burger{
-    cursor: none;
-  }
 
-  .cursorDot,
-  .cursorRing{
-    position: fixed;
-    left: 0;
-    top: 0;
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate3d(-50%, -50%, 0);
-    opacity: 1;
-    transition: opacity 180ms var(--ease);
-  }
+/* hide native cursor */
+body{ cursor:none; }
+a, button, .dd__btn, .nav__burger{ cursor:none; }
 
-  .cursorDot{
-    width: 6px;
-    height: 6px;
-    border-radius: 999px;
-    background: rgba(214,244,205,0.95);
-    box-shadow: 0 10px 26px rgba(0,0,0,0.28);
-  }
+.cursorDot,
+.cursorRing{
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate3d(-50%, -50%, 0);
+  will-change: transform, opacity;
+}
 
-  .cursorRing{
-    width: 28px;
-    height: 28px;
-    border-radius: 999px;
-    border: 1px solid rgba(214,244,205,0.55);
-    background: rgba(214,244,205,0.06);
-    backdrop-filter: blur(2px);
-    box-shadow: 0 18px 44px rgba(0,0,0,0.22);
-    transition:
-      width 180ms var(--ease),
-      height 180ms var(--ease),
-      border-color 180ms var(--ease),
-      background-color 180ms var(--ease),
-      transform 180ms var(--ease);
-  }
+.cursorDot{
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(214,244,205,0.95);
+  box-shadow: 0 0 0 8px rgba(214,244,205,0.06);
+  opacity: 0;
+}
 
-  .cursorRing.is-hover{
-    width: 38px;
-    height: 38px;
-    border-color: rgba(214,244,205,0.75);
-    background: rgba(214,244,205,0.10);
-  }
+.cursorRing{
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1px solid rgba(214,244,205,0.55);
+  background: radial-gradient(circle at center, rgba(214,244,205,0.10), transparent 60%);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.22);
+  opacity: 0;
+}
 
-  .cursorRing.is-down{
-    transform: translate3d(-50%, -50%, 0) scale(0.92);
-  }
+/* hover / active feel */
+.cursorRing.is-hover{
+  border-color: rgba(214,244,205,0.75);
+  background: radial-gradient(circle at center, rgba(214,244,205,0.16), transparent 62%);
+}
+
+@media (pointer: coarse){
+  body{ cursor:auto; }
+  .cursorDot, .cursorRing{ display:none !important; }
 }
 
 /* =========================
@@ -146,8 +133,10 @@ button:focus-visible{
 .slideCopy{ animation-delay: 80ms; }
 .slideMedia{ animation-delay: 140ms; }
 
+/* reduce motion */
 @media (prefers-reduced-motion: reduce){
-  *{ animation: none !important; transition: none !important; scroll-behavior:auto !important; }
+  html{ scroll-behavior:auto !important; }
+  *{ animation: none !important; transition: none !important; }
 }
 
 /* NAV */
@@ -297,7 +286,6 @@ button:focus-visible{
   margin-top:2px;
 }
 
-
 /* Mobile burger */
 .nav__burger{
   display:none;
@@ -420,7 +408,6 @@ button:focus-visible{
   padding-block: clamp(72px, 9vh, 120px);
   position:relative;
   overflow:hidden;
-  scroll-margin-top: 92px; /* sticky offset for anchors */
 }
 
 .slide::before{
@@ -724,9 +711,86 @@ button:focus-visible{
 }
 
 /* =========================
-   MEDIA FRAME (images inside container)
+   ✅ HOVER AURA (follows cursor)
    ========================= */
+.metaCard,
+.callout,
+.infoCard,
+.listCard,
+.step,
+.techCard,
+.reflectCard,
+.typeCard,
+.sw{
+  position: relative;
+  overflow: hidden;
+}
 
+.metaCard > *,
+.callout > *,
+.infoCard > *,
+.listCard > *,
+.step > *,
+.techCard > *,
+.reflectCard > *,
+.typeCard > *,
+.sw > *{
+  position: relative;
+  z-index: 1;
+}
+
+/* IMPORTANT:
+   Use a dedicated property name that won't collide.
+   JS sets --gx and --gy.
+*/
+.metaCard::before,
+.callout::before,
+.infoCard::before,
+.listCard::before,
+.step::before,
+.techCard::before,
+.reflectCard::before,
+.typeCard::before,
+.sw::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  border-radius: inherit;
+  pointer-events:none;
+
+  --gx: 50%;
+  --gy: 50%;
+
+  background:
+    radial-gradient(320px 220px at var(--gx) var(--gy),
+      rgba(214,244,205,0.22),
+      transparent 62%),
+    radial-gradient(460px 340px at calc(var(--gx) + 12%) calc(var(--gy) + 18%),
+      rgba(74,138,119,0.16),
+      transparent 66%);
+
+  opacity: 0;
+  transform: scale(0.985);
+  transition: opacity 220ms var(--ease), transform 220ms var(--ease);
+  will-change: background, opacity, transform;
+}
+
+.metaCard:hover::before,
+.callout:hover::before,
+.infoCard:hover::before,
+.listCard:hover::before,
+.step:hover::before,
+.techCard:hover::before,
+.reflectCard:hover::before,
+.typeCard:hover::before,
+.sw:hover::before{
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* =========================
+   MEDIA FRAME
+   ========================= */
 .mediaFrame{
   width:100%;
   max-width:100%;
@@ -750,7 +814,6 @@ button:focus-visible{
 
 .mediaFrame--tall{ min-height: 560px; }
 
-/* ✅ for images/videos inside mediaFrame (presentation frames) */
 .mediaFrame img,
 .mediaFrame video{
   width:100%;
@@ -792,10 +855,7 @@ button:focus-visible{
 }
 .step__body strong{ display:block; font-size:13px; margin-bottom:6px; }
 
-/* =========================
-   DEMO — iPhone video
-   ========================= */
-
+/* DEMO */
 .videoFrame{
   border-radius: var(--r-lg);
   background: rgba(253,251,252,0.06);
@@ -805,7 +865,6 @@ button:focus-visible{
   width: min(360px, 100%);
   aspect-ratio: 9 / 16;
   margin-inline:auto;
-  position: relative; /* spotlight */
 }
 
 .mediaVideo{
@@ -816,35 +875,7 @@ button:focus-visible{
   background: rgba(0,0,0,0.25);
 }
 
-/* ✅ Demo video focus spotlight */
-.videoFrame::before{
-  content:"";
-  position:absolute;
-  inset:-28px;
-  border-radius: calc(var(--r-lg) + 26px);
-  background:
-    radial-gradient(520px 520px at 50% 40%,
-      rgba(214,244,205,0.16),
-      transparent 62%),
-    radial-gradient(620px 620px at 50% 70%,
-      rgba(74,138,119,0.14),
-      transparent 66%);
-  filter: blur(10px);
-  opacity: 0;
-  transform: translateY(8px) scale(0.98);
-  transition: opacity 420ms var(--ease), transform 420ms var(--ease);
-  pointer-events:none;
-  z-index: -1;
-}
-.videoFrame.is-focus::before{
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
-/* =========================
-   ANIMATIONS — 4 screens
-   ========================= */
-
+/* ANIMATIONS — 4 screens */
 .grid2{
   display:grid;
   grid-template-columns: repeat(4, minmax(0,1fr));
@@ -1126,10 +1157,8 @@ button:focus-visible{
 }
 
 /* =========================
-   ✅ MOCKUP GALLERY — IMAGE-BOUND CORNERS + NO STRETCH
-   Put this at the END so it overrides everything
+   MOCKUP GALLERY
    ========================= */
-
 .slide--gallery .container{
   max-width: 1880px;
 }
@@ -1137,7 +1166,6 @@ button:focus-visible{
 .gallerySwiper{
   width:100%;
   overflow: visible;
-  perspective: 900px; /* depth */
 }
 
 .gallerySwiper .swiper-slide{
@@ -1153,14 +1181,11 @@ button:focus-visible{
   align-items:center;
   justify-content:center;
 
-  transform-style: preserve-3d;
-  will-change: transform;
-
   transition: transform 220ms var(--ease);
 }
 
 .gallerySwiper .swiper-slide:hover{
-  transform: translateY(-4px) rotateX(1.5deg) rotateY(-2.5deg);
+  transform: translateY(-2px);
 }
 
 .gallerySwiper img{
@@ -1173,14 +1198,7 @@ button:focus-visible{
   display:block;
   border-radius: 22px;
   box-shadow: 0 28px 80px rgba(0,0,0,0.35);
-
   transform: translateZ(0);
-  transition: transform 220ms var(--ease), box-shadow 220ms var(--ease);
-}
-
-.gallerySwiper .swiper-slide:hover img{
-  transform: translateZ(18px);
-  box-shadow: 0 34px 96px rgba(0,0,0,0.45);
 }
 
 @media (max-width: 980px){
@@ -1195,48 +1213,4 @@ button:focus-visible{
     border-radius: 16px;
     max-height: 58vh;
   }
-}
-
-/* =========================
-   ✅ Smooth anchor scrolling
-   ========================= */
-html{ scroll-behavior: smooth; }
-@media (prefers-reduced-motion: reduce){
-  html{ scroll-behavior:auto; }
-}
-
-/* =========================
-   ✅ Parallax glow background (site-wide)
-   ========================= */
-body::after{
-  content:"";
-  position: fixed;
-  inset: -120px;
-  pointer-events:none;
-  z-index: 0;
-
-  background:
-    radial-gradient(820px 520px at calc(12% + (var(--mx) * 20%)) calc(10% + (var(--my) * 20%)),
-      rgba(214,244,205,0.06),
-      transparent 60%),
-    radial-gradient(820px 520px at calc(88% - (var(--mx) * 18%)) calc(78% - (var(--my) * 16%)),
-      rgba(74,138,119,0.08),
-      transparent 62%),
-    radial-gradient(1200px 700px at 50% 50%,
-      rgba(0,0,0,0.10),
-      transparent 70%);
-
-  filter: blur(6px);
-  opacity: 0.9;
-  transform: translate3d(0, calc(var(--sy) * 0.02px), 0);
-  transition: opacity 260ms var(--ease);
-}
-
-/* keep content above glow */
-.nav,
-.navPanel,
-main,
-footer{
-  position: relative;
-  z-index: 1;
 }

@@ -4,159 +4,11 @@ document.addEventListener("DOMContentLoaded", () => {
   if (y) y.textContent = new Date().getFullYear();
 
   const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-
-  /* =========================
-     ✅ CIRCLE CURSOR (uses HTML elements)
-     ========================= */
-  if (canHover && !prefersReduced) {
-    const dot = document.querySelector(".cursorDot");
-    const ring = document.querySelector(".cursorRing");
-
-    if (dot && ring) {
-      let x = window.innerWidth / 2;
-      let y2 = window.innerHeight / 2;
-      let rx = x;
-      let ry = y2;
-
-      const setPos = (el, px, py) => {
-        el.style.transform = `translate3d(${px}px, ${py}px, 0) translate3d(-50%, -50%, 0)`;
-      };
-
-      window.addEventListener(
-        "pointermove",
-        (e) => {
-          x = e.clientX;
-          y2 = e.clientY;
-          setPos(dot, x, y2);
-        },
-        { passive: true }
-      );
-
-      const loop = () => {
-        rx += (x - rx) * 0.18;
-        ry += (y2 - ry) * 0.18;
-        setPos(ring, rx, ry);
-        requestAnimationFrame(loop);
-      };
-      loop();
-
-      const isClickable = (el) =>
-        !!(
-          el &&
-          el.closest(
-            "a, button, .btn, .dd__btn, .nav__burger, [role='button'], input, textarea, select"
-          )
-        );
-
-      document.addEventListener(
-        "pointerover",
-        (e) => {
-          ring.classList.toggle("is-hover", isClickable(e.target));
-        },
-        { passive: true }
-      );
-
-      window.addEventListener("pointerdown", () => ring.classList.add("is-down"));
-      window.addEventListener("pointerup", () => ring.classList.remove("is-down"));
-
-      document.addEventListener("mouseleave", () => {
-        dot.style.opacity = "0";
-        ring.style.opacity = "0";
-      });
-      document.addEventListener("mouseenter", () => {
-        dot.style.opacity = "";
-        ring.style.opacity = "";
-      });
-    }
-  }
-
-  /* =========================
-     ✅ Smooth anchor scroll (sticky offset)
-     ========================= */
-  const nav = document.querySelector(".nav");
-
-  function getNavOffset() {
-    if (!nav) return 0;
-    const r = nav.getBoundingClientRect();
-    return Math.ceil(r.height + 16);
-  }
-
-  function smoothScrollToHash(hash) {
-    const id = hash.replace("#", "");
-    if (!id) return;
-
-    const target = document.getElementById(id);
-    if (!target) return;
-
-    const top = target.getBoundingClientRect().top + window.scrollY - getNavOffset();
-    window.scrollTo({ top, behavior: "smooth" });
-  }
-
-  document.querySelectorAll('a[href^="#"]').forEach((a) => {
-    a.addEventListener("click", (e) => {
-      const href = a.getAttribute("href");
-      if (!href || href === "#") return;
-
-      const target = document.getElementById(href.slice(1));
-      if (!target) return;
-
-      e.preventDefault();
-      history.pushState(null, "", href);
-      smoothScrollToHash(href);
-    });
-  });
-
-  if (window.location.hash) {
-    setTimeout(() => smoothScrollToHash(window.location.hash), 0);
-  }
-
-  /* =========================
-     ✅ Parallax glow background (CSS vars)
-     ========================= */
-  if (!prefersReduced) {
-    let mx = 0.5;
-    let my = 0.5;
-    let sy = window.scrollY;
-
-    let raf = null;
-    const apply = () => {
-      raf = null;
-      document.documentElement.style.setProperty("--mx", String(mx));
-      document.documentElement.style.setProperty("--my", String(my));
-      document.documentElement.style.setProperty("--sy", String(sy));
-    };
-
-    const schedule = () => {
-      if (raf) return;
-      raf = requestAnimationFrame(apply);
-    };
-
-    window.addEventListener(
-      "pointermove",
-      (e) => {
-        mx = Math.min(1, Math.max(0, e.clientX / window.innerWidth));
-        my = Math.min(1, Math.max(0, e.clientY / window.innerHeight));
-        schedule();
-      },
-      { passive: true }
-    );
-
-    window.addEventListener(
-      "scroll",
-      () => {
-        sy = window.scrollY;
-        schedule();
-      },
-      { passive: true }
-    );
-
-    schedule();
-  }
 
   /* =========================
      NAV — show on ANY scroll up
      ========================= */
+  const nav = document.querySelector(".nav");
   let lastY = window.scrollY;
 
   function updateNavOnScroll() {
@@ -164,25 +16,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const currentY = window.scrollY;
 
-    // always show at the very top
     if (currentY <= 0) {
       nav.classList.remove("is-hidden");
       lastY = currentY;
       return;
     }
 
-    if (currentY < lastY) {
-      // scrolling up (even 1px)
-      nav.classList.remove("is-hidden");
-    } else if (currentY > lastY) {
-      // scrolling down
-      nav.classList.add("is-hidden");
-    }
+    if (currentY < lastY) nav.classList.remove("is-hidden");
+    else if (currentY > lastY) nav.classList.add("is-hidden");
 
-    // always keep lastY updated
     lastY = currentY;
   }
-
   window.addEventListener("scroll", updateNavOnScroll, { passive: true });
 
   /* =========================
@@ -212,9 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    dd.querySelectorAll("a").forEach((a) => {
-      a.addEventListener("click", closeAllDropdowns);
-    });
+    dd.querySelectorAll("a").forEach((a) => a.addEventListener("click", closeAllDropdowns));
   });
 
   document.addEventListener("click", closeAllDropdowns);
@@ -242,9 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
       closeAllDropdowns();
     });
 
-    panel.querySelectorAll("a").forEach((a) => {
-      a.addEventListener("click", () => setPanel(false));
-    });
+    panel.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => setPanel(false)));
 
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") setPanel(false);
@@ -265,24 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* =========================
-     ✅ Demo video focus spotlight
-     ========================= */
-  const demoSection = document.getElementById("demo");
-  const videoFrame = document.querySelector("#demo .videoFrame");
-
-  if (demoSection && videoFrame && "IntersectionObserver" in window) {
-    const obs = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[0];
-        videoFrame.classList.toggle("is-focus", entry.isIntersecting && entry.intersectionRatio > 0.25);
-      },
-      { threshold: [0, 0.25, 0.5] }
-    );
-    obs.observe(demoSection);
-  }
-
-  /* =========================
-     Mockup gallery swiper + dragging feel
+     Mockup gallery swiper
      ========================= */
   const galleryEl = document.querySelector(".gallerySwiper");
   if (galleryEl && window.Swiper) {
@@ -296,16 +119,151 @@ document.addEventListener("DOMContentLoaded", () => {
         980: { spaceBetween: 18 },
         1400: { spaceBetween: 22 },
       },
-      on: {
-        touchStart: () => galleryEl.classList.add("is-dragging"),
-        touchEnd: () => galleryEl.classList.remove("is-dragging"),
-        sliderMove: () => galleryEl.classList.add("is-dragging"),
-        transitionEnd: () => galleryEl.classList.remove("is-dragging"),
-      },
     });
-
-    galleryEl.addEventListener("pointerup", () => galleryEl.classList.remove("is-dragging"));
-    galleryEl.addEventListener("pointercancel", () => galleryEl.classList.remove("is-dragging"));
-    galleryEl.addEventListener("mouseleave", () => galleryEl.classList.remove("is-dragging"));
   }
+
+  /* =========================
+     CUSTOM CURSOR (dot + ring)
+     ========================= */
+  const dot = document.querySelector(".cursorDot");
+  const ring = document.querySelector(".cursorRing");
+  const finePointer = window.matchMedia("(pointer: fine)").matches;
+
+  if (dot && ring && finePointer && !prefersReduced) {
+    let targetX = window.innerWidth / 2;
+    let targetY = window.innerHeight / 2;
+
+    let dotX = targetX;
+    let dotY = targetY;
+
+    let ringX = targetX;
+    let ringY = targetY;
+
+    let rafId = null;
+    let isVisible = false;
+
+    const DOT_LERP = 0.55;
+    const RING_LERP = 0.22;
+
+    const loop = () => {
+      dotX += (targetX - dotX) * DOT_LERP;
+      dotY += (targetY - dotY) * DOT_LERP;
+
+      ringX += (targetX - ringX) * RING_LERP;
+      ringY += (targetY - ringY) * RING_LERP;
+
+      dot.style.transform = `translate3d(${dotX}px, ${dotY}px, 0) translate3d(-50%, -50%, 0)`;
+      ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate3d(-50%, -50%, 0)`;
+
+      rafId = requestAnimationFrame(loop);
+    };
+
+    const show = () => {
+      if (isVisible) return;
+      isVisible = true;
+      dot.style.opacity = "1";
+      ring.style.opacity = "1";
+    };
+
+    const hide = () => {
+      isVisible = false;
+      dot.style.opacity = "0";
+      ring.style.opacity = "0";
+    };
+
+    window.addEventListener(
+      "pointermove",
+      (e) => {
+        targetX = e.clientX;
+        targetY = e.clientY;
+        show();
+        if (!rafId) rafId = requestAnimationFrame(loop);
+      },
+      { passive: true }
+    );
+
+    window.addEventListener("pointerdown", () => ring.classList.add("is-down"));
+    window.addEventListener("pointerup", () => ring.classList.remove("is-down"));
+    window.addEventListener("blur", hide);
+    document.addEventListener("mouseleave", hide);
+
+    const hoverSel =
+      'a, button, .btn, .dd__btn, .nav__burger, .swiper-slide, video, .metaCard, .callout, .infoCard, .listCard, .step, .techCard, .reflectCard, .typeCard, .sw';
+
+    document.querySelectorAll(hoverSel).forEach((el) => {
+      el.addEventListener("pointerenter", () => ring.classList.add("is-hover"), { passive: true });
+      el.addEventListener("pointerleave", () => ring.classList.remove("is-hover"), { passive: true });
+    });
+  }
+
+  /* =========================
+     ✅ Hover aura follows cursor on cards
+     IMPORTANT: matches the CSS vars: --gx / --gy
+     ========================= */
+  if (!prefersReduced) {
+    const auraTargets = document.querySelectorAll(
+      ".metaCard, .callout, .infoCard, .listCard, .step, .techCard, .reflectCard, .typeCard, .sw"
+    );
+
+    const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
+
+    auraTargets.forEach((el) => {
+      // default center
+      el.style.setProperty("--gx", "50%");
+      el.style.setProperty("--gy", "50%");
+
+      const setGlowFromEvent = (e) => {
+        const r = el.getBoundingClientRect();
+        // Guard against 0 size
+        if (!r.width || !r.height) return;
+
+        const px = ((e.clientX - r.left) / r.width) * 100;
+        const py = ((e.clientY - r.top) / r.height) * 100;
+
+        el.style.setProperty("--gx", `${clamp(px, 0, 100)}%`);
+        el.style.setProperty("--gy", `${clamp(py, 0, 100)}%`);
+      };
+
+      // Use mousemove as fallback too (some browsers are weird with pointermove)
+      el.addEventListener("pointermove", setGlowFromEvent, { passive: true });
+      el.addEventListener("mousemove", setGlowFromEvent, { passive: true });
+
+      el.addEventListener(
+        "pointerenter",
+        (e) => {
+          setGlowFromEvent(e);
+        },
+        { passive: true }
+      );
+
+      el.addEventListener(
+        "pointerleave",
+        () => {
+          el.style.setProperty("--gx", "50%");
+          el.style.setProperty("--gy", "50%");
+        },
+        { passive: true }
+      );
+    });
+  }
+
+  /* =========================
+     Smooth anchor scroll (JS fallback)
+     ========================= */
+  document.querySelectorAll('a[href^="#"]').forEach((a) => {
+    a.addEventListener("click", (e) => {
+      const id = a.getAttribute("href");
+      if (!id || id === "#") return;
+      const target = document.querySelector(id);
+      if (!target) return;
+
+      e.preventDefault();
+      const navH = nav ? nav.offsetHeight : 0;
+      const top = target.getBoundingClientRect().top + window.scrollY - navH - 14;
+
+      window.scrollTo({ top, behavior: "smooth" });
+      closeAllDropdowns();
+      if (panel && panel.classList.contains("is-open")) setPanel(false);
+    });
+  });
 });
