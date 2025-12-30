@@ -3,7 +3,81 @@ document.addEventListener("DOMContentLoaded", () => {
   const y = document.getElementById("y");
   if (y) y.textContent = new Date().getFullYear();
 
-    /* =========================
+  /* =========================
+     CIRCLE CURSOR
+     ========================= */
+
+  const dot = document.querySelector(".cursorDot");
+  const ring = document.querySelector(".cursorRing");
+
+  const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+  if (dot && ring && canHover) {
+    let x = window.innerWidth / 2;
+    let y = window.innerHeight / 2;
+    let rx = x;
+    let ry = y;
+
+    const setPos = (el, px, py) => {
+      el.style.transform = `translate3d(${px}px, ${py}px, 0) translate3d(-50%, -50%, 0)`;
+    };
+
+    window.addEventListener(
+      "pointermove",
+      (e) => {
+        x = e.clientX;
+        y = e.clientY;
+        setPos(dot, x, y);
+      },
+      { passive: true }
+    );
+
+    const loop = () => {
+      rx += (x - rx) * 0.18;
+      ry += (y - ry) * 0.18;
+      setPos(ring, rx, ry);
+      requestAnimationFrame(loop);
+    };
+    loop();
+
+    const isClickable = (el) =>
+      el &&
+      (el.closest(
+        "a, button, .btn, .dd__btn, .nav__burger, [role='button'], input, textarea, select"
+      ) ||
+        window.getComputedStyle(el).cursor === "pointer");
+
+    document.addEventListener(
+      "pointerover",
+      (e) => {
+        ring.classList.toggle("is-hover", !!isClickable(e.target));
+      },
+      { passive: true }
+    );
+
+    document.addEventListener(
+      "pointerout",
+      () => {
+        ring.classList.remove("is-hover");
+      },
+      { passive: true }
+    );
+
+    window.addEventListener("pointerdown", () => ring.classList.add("is-down"));
+    window.addEventListener("pointerup", () => ring.classList.remove("is-down"));
+
+    document.addEventListener("mouseleave", () => {
+      dot.style.opacity = "0";
+      ring.style.opacity = "0";
+    });
+
+    document.addEventListener("mouseenter", () => {
+      dot.style.opacity = "";
+      ring.style.opacity = "";
+    });
+  }
+
+  /* =========================
      NAV — show on ANY scroll up
      ========================= */
 
@@ -15,7 +89,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const currentY = window.scrollY;
 
-    // always show at the very top
     if (currentY <= 0) {
       nav.classList.remove("is-hidden");
       lastY = currentY;
@@ -23,19 +96,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (currentY < lastY) {
-      // scrolling up (even 1px)
       nav.classList.remove("is-hidden");
     } else if (currentY > lastY) {
-      // scrolling down
       nav.classList.add("is-hidden");
     }
 
-    // always keep lastY updated
     lastY = currentY;
   }
 
   window.addEventListener("scroll", updateNavOnScroll, { passive: true });
-
 
   /* =========================
      Desktop dropdowns

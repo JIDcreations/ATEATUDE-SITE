@@ -1092,6 +1092,67 @@ button:focus-visible{
   .gallerySwiper img{ max-height: 64vh; }
 }
 
+/* =========================
+   CIRCLE CURSOR
+   ========================= */
+
+body{
+  cursor: none;
+}
+
+/* Keep native cursor on touch devices */
+@media (hover: none), (pointer: coarse){
+  body{ cursor: auto; }
+  .cursorDot, .cursorRing{ display:none !important; }
+}
+
+.cursorDot,
+.cursorRing{
+  position: fixed;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate3d(-50%, -50%, 0);
+  will-change: transform, width, height, opacity;
+}
+
+.cursorDot{
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(214,244,205,0.95);
+  opacity: 0.95;
+}
+
+.cursorRing{
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1px solid rgba(214,244,205,0.55);
+  background: rgba(214,244,205,0.06);
+  backdrop-filter: blur(2px);
+  transition: width 140ms var(--ease), height 140ms var(--ease), border-color 140ms var(--ease), background-color 140ms var(--ease), opacity 140ms var(--ease);
+  opacity: 0.9;
+}
+
+/* Hover states (links/buttons/clickable) */
+.cursorRing.is-hover{
+  width: 46px;
+  height: 46px;
+  border-color: rgba(214,244,205,0.85);
+  background: rgba(214,244,205,0.10);
+}
+
+/* Click state */
+.cursorRing.is-down{
+  width: 28px;
+  height: 28px;
+  opacity: 0.95;
+}
+
+
+
 @media (max-width: 520px){
   .gallerySwiper .swiper-slide{ width: 92vw; }
   .gallerySwiper img{
