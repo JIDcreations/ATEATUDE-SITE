@@ -724,6 +724,10 @@ a, button, .dd__btn, .nav__burger{ cursor:none; }
 .sw{
   position: relative;
   overflow: hidden;
+
+  /* default center so it works even before JS runs */
+  --gx: 50%;
+  --gy: 50%;
 }
 
 .metaCard > *,
@@ -740,8 +744,8 @@ a, button, .dd__btn, .nav__burger{ cursor:none; }
 }
 
 /* IMPORTANT:
-   Use a dedicated property name that won't collide.
-   JS sets --gx and --gy.
+   JS sets --gx and --gy on the element.
+   Do NOT redeclare them on ::before (it would override the JS values).
 */
 .metaCard::before,
 .callout::before,
@@ -757,9 +761,6 @@ a, button, .dd__btn, .nav__burger{ cursor:none; }
   inset:-2px;
   border-radius: inherit;
   pointer-events:none;
-
-  --gx: 50%;
-  --gy: 50%;
 
   background:
     radial-gradient(320px 220px at var(--gx) var(--gy),
